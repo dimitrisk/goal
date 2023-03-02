@@ -1,0 +1,50 @@
+title: goal
+
+
+
+
+template:
+  params:
+    ganalytics: UA-1852515-6
+    bootswatch: cerulean
+
+development:
+  mode: auto
+
+articles:
+- title: Similarity of paths
+  navbar: ~
+  contents:
+  - Similarity
+- title: Dimka Algorithm
+  navbar: ~
+  contents:
+  - dimkaAlgorithm
+
+
+reference:
+  - title: "Geometry functions"
+    desc: "Functions for geometry components and managing"
+    contents:
+    - matches("geo")
+
+  - title: "Stats"
+    desc: "Various statistical fucntions."
+    contents:
+    - matches("stats")
+
+  - title: "data"
+    desc: "The data of the package."
+    contents:
+    - starts_with("goaldata")
+
+  - title: "UAV"
+    desc: "Methods for analysing data from UAV sensors."
+    contents:
+    - starts_with("uav")
+    - matches("dimkaAlgorithm")
+
+  - title: "Visualization"
+    desc: "Visualization methods."
+    contents:
+    - starts_with("vis")
