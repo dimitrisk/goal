@@ -1,6 +1,6 @@
 # goal 
 
-<img src="logo.png" align="right" />
+<img src="man/figures/logo.png" align="right" />
 
 
 An R library for the analysis of geographical data. Contains the following 4 group of functions:   
