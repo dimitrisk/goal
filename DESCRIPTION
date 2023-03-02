@@ -1,0 +1,26 @@
+Package: goal
+Type: Package
+Title: GeOgraphical Analysis Library
+Version: 0.1
+Date: 2021-07-02
+Authors@R: person( given ="Dimitris", family ="Kavroudakis", email="dimitris123@gmail.com", role=c("aut","cre"))
+Maintainer: Dimitris Kavroudakis <dimitris123@gmail.com>
+Description: Library for the analysis of geographical data. Contains the following 4 group of functions:   
+  (a) functions for the analysis of networks ("net").   
+  (b) functions for spatial-geometry conversions ("geo").   
+  (c) functions for geographical visualization and interpretation of statistics ("vis").  
+  (d) functions for analysis of UAV missions and flightpaths ("uav").
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Imports: plotrix, rgdal, rgeos, sp,
+  ggplot2, raster, methods, plotKML, sqldf, grDevices 
+LazyData: true
+License: GPL-3
+RoxygenNote: 7.2.2
+Encoding: UTF-8
+VignetteBuilder: knitr
+Depends: R(>= 3.5.0)
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
