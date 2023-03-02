@@ -1,0 +1,2 @@
+# goal
+Geographical Analysis Library
