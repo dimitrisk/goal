@@ -11,7 +11,12 @@ template:
 development:
   mode: auto
 
+
 articles:
+- title: introduction
+  navbar: ~
+  contents:
+  - introduction
 - title: Similarity of paths
   navbar: ~
   contents:
