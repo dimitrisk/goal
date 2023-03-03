@@ -15,7 +15,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
-Imports: plotrix, rgdal, rgeos, sp, osmdata, dplyr, sf, devtools, 
+Imports: plotrix, rgdal, rgeos, sp, osmdata, dplyr, sf, devtools, rmarkdown, 
   ggplot2, raster, methods, plotKML, sqldf, grDevices 
 LazyData: true
 License: GPL-3
