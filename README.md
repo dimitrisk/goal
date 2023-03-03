@@ -21,32 +21,7 @@ includes 4 group of functions:
 
 4)  functions for analysis of UAV missions and flightpaths (`uav`).
 
-## Install
-
-    library(devtools)
-    install_github("dimitrisk/goal")
-
-[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Project Status: Active - The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![GitHub all
-releases](https://img.shields.io/github/downloads/dimitrisk/goal/total)
-![GitHub issues](https://img.shields.io/github/issues/dimitrisk/goal)
-![GitHub pull
-requests](https://img.shields.io/github/issues-pr/dimitrisk/goal)
-![GitHub Repo
-stars](https://img.shields.io/github/stars/dimitrisk/goal?style=social)
-![GitHub R package
-version](https://img.shields.io/github/r-package/v/dimitrisk/goal)
-![GitHub release (latest by
-date)](https://img.shields.io/github/v/release/dimitrisk/goal) ![GitHub
-last commit](https://img.shields.io/github/last-commit/dimitrisk/goal)
-
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of goal is to …
+5)  functions for OpenStreetMap data analysis (`osm`).
 
 ## Installation
 
@@ -54,6 +29,8 @@ You can install goal from GitHub with:
 
 ``` r
 # install.packages("devtools")
+library(devtools)
+
 devtools::install_github("dimitrisk/goal")
 ```
 
@@ -72,9 +49,22 @@ use GitHub Actions to re-render `README.Rmd` every time you push. An
 example workflow can be found here:
 <https://github.com/r-lib/actions/tree/v1/examples>.
 
-You can also embed plots, for example:
+<!-- badges: start -->
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![GitHub all
+releases](https://img.shields.io/github/downloads/dimitrisk/goal/total)
+![GitHub issues](https://img.shields.io/github/issues/dimitrisk/goal)
+![GitHub pull
+requests](https://img.shields.io/github/issues-pr/dimitrisk/goal)
+![GitHub Repo
+stars](https://img.shields.io/github/stars/dimitrisk/goal?style=social)
+![GitHub R package
+version](https://img.shields.io/github/r-package/v/dimitrisk/goal)
+![GitHub release (latest by
+date)](https://img.shields.io/github/v/release/dimitrisk/goal) ![GitHub
+last commit](https://img.shields.io/github/last-commit/dimitrisk/goal)
+<!-- badges: end -->
