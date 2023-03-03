@@ -4,14 +4,6 @@ template:
   params:
     ganalytics: UA-1852515-6
     bootswatch: cerulean
-  includes:
-    in_header: |
-       <!-- Global site tag (gtag.js) - Google Analytics -->
-       <script async src="https://www.googletagmanager.com/gtag/js?id={UA-1852515-6}"#' ></script>
-       <script> window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-         gtag('config', '{UA-1852515-6}'); </script>
 
 development:
   mode: auto

@@ -14,6 +14,7 @@
 #' @export
 #' @keywords openstreetmap, network
 #' @family osm
+#' @importFrom dplyr %>%
 #' @examples library(goal)
 #' 
 osm.getRoads = function(inPerioxi="Mytilene Municipal Unit"){
@@ -39,6 +40,7 @@ osm.getRoads = function(inPerioxi="Mytilene Municipal Unit"){
 #' @export
 #' @keywords openstreetmap, frequency, POIs
 #' @family osm
+#' @importFrom dplyr %>%
 #' @examples library(goal)
 #' 
 osm.getPOI = function(inPerioxi="Mytilene Municipal Unit", inkey ="amenity"){
@@ -57,6 +59,7 @@ osm.getPOI = function(inPerioxi="Mytilene Municipal Unit", inkey ="amenity"){
 #' @export
 #' @keywords openstreetmap, frequency, POIs
 #' @family osm
+#' @importFrom dplyr %>%
 #' @examples library(goal)
 #' 
 osm.combineAmenities = function(inam){
@@ -86,6 +89,7 @@ osm.combineAmenities = function(inam){
 #' @export
 #' @keywords openstreetmap, frequency, POIs
 #' @family osm
+#' @importFrom dplyr %>%
 #' @examples library(goal)
 #' 
 osm.combineShops = function(inam){
@@ -116,6 +120,7 @@ osm.combineShops = function(inam){
 #' @export
 #' @keywords openstreetmap, frequency, POIs
 #' @family osm
+#' @importFrom dplyr %>%
 #' @examples library(goal)
 #' 
 osm.getFrequency = function(indf, inword="shop", removeNA=T){
@@ -143,10 +148,13 @@ osm.getFrequency = function(indf, inword="shop", removeNA=T){
 #' @export
 #' @keywords openstreetmap, raster
 #' @family osm
-#' @examples library(goal)
+#' @importFrom dplyr %>%
+#' @importFrom devtools install_github
+#' @examples library(devtools)
+#' install_github("dimitrisk/goal")
+#' library(goal)
 #' result = goal::osm.CreateEmptyRaster(inPerioxi="Mytilene Municipal Unit")
 #' result
-#' print(result)
 osm.CreateEmptyRaster = function(inPerioxi="Mytilene Municipal Unit"){
   bb = osmdata::getbb(inPerioxi)
   #bb = osmdata::getbb("Mytilene Municipal Unit")

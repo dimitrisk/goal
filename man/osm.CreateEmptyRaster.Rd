@@ -16,11 +16,11 @@ An empty raster that covers the full area
 Create an empty raster for an area. It downloads the area from OSM services, and then creates an empty raster of this area.
 }
 \examples{
+library(devtools)
+install_github("dimitrisk/goal")
 library(goal)
 result = goal::osm.CreateEmptyRaster(inPerioxi="Mytilene Municipal Unit")
 result
-print(result)
-plot(result)
 }
 \seealso{
 Other osm: 
