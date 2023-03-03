@@ -4,6 +4,9 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/articles/OpenStreetMap.html</loc>
+  </url>
+  <url>
     <loc>/articles/Similarity.html</loc>
   </url>
   <url>
@@ -11,9 +14,6 @@
   </url>
   <url>
     <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/introduction.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -38,6 +38,24 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/osm.CreateEmptyRaster.html</loc>
+  </url>
+  <url>
+    <loc>/reference/osm.combineAmenities.html</loc>
+  </url>
+  <url>
+    <loc>/reference/osm.combineShops.html</loc>
+  </url>
+  <url>
+    <loc>/reference/osm.getFrequency.html</loc>
+  </url>
+  <url>
+    <loc>/reference/osm.getPOI.html</loc>
+  </url>
+  <url>
+    <loc>/reference/osm.getRoads.html</loc>
   </url>
   <url>
     <loc>/reference/stats.SimilarityOfVectors.html</loc>

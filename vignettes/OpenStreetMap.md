@@ -16,8 +16,6 @@ vignette: >
   %\VignetteIndexEntry{OpenStreetMap data analysis}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: console
 ---
 
 ## Introduction

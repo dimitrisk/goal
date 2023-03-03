@@ -1,9 +1,11 @@
+
 title: goal
 
 template:
   params:
     ganalytics: UA-1852515-6
     bootswatch: cerulean
+    bootstrap: 5
 
 development:
   mode: auto

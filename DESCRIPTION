@@ -25,3 +25,4 @@ VignetteBuilder: knitr
 Depends: R(>= 3.5.0)
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
+URL: https://dimitrisk.github.io/goal/

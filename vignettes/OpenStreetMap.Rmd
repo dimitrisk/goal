@@ -13,11 +13,9 @@ output:
   rmarkdown::pdf_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{OpenStreetMap data analysis}
+  %\VignetteIndexEntry{OpenStreetMap}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: console
 ---
 
 ## Introduction
