@@ -1,27 +1,38 @@
 title: goal
 
-
-
-
 template:
   params:
     ganalytics: UA-1852515-6
     bootswatch: cerulean
+  includes:
+    in_header: |
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id={UA-1852515-6}"#' ></script>
+       <script> window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', '{UA-1852515-6}'); </script>
 
 development:
   mode: auto
 
+repo:
+  url:
+    home: https://github.com/dimitrisk/goal/
+    source: https://github.com/dimitrisk/goal/blob/HEAD/
+    issue: https://github.com/dimitrisk/goal/issues/
+    user: https://github.com/dimitrisk/
 
 articles:
-- title: introduction
+- title: (osm) OpenStreetMap
   navbar: ~
   contents:
-  - introduction
-- title: Similarity of paths
+  - OpenStreetMap
+- title: (stats) Similarity of paths
   navbar: ~
   contents:
   - Similarity
-- title: Dimka Algorithm
+- title: (uav) Dimka Algorithm
   navbar: ~
   contents:
   - dimkaAlgorithm
@@ -29,22 +40,22 @@ articles:
 
 reference:
   - title: "Geometry functions"
-    desc: "Functions for geometry components and managing"
+    desc: "Functions about geometry."
     contents:
     - matches("geo")
 
   - title: "Stats"
-    desc: "Various statistical fucntions."
+    desc: "Statistical fucntions."
     contents:
     - matches("stats")
 
   - title: "data"
-    desc: "The data of the package."
+    desc: "Datasets included in the `goal` package."
     contents:
     - starts_with("goaldata")
 
-  - title: "UAV"
-    desc: "Methods for analysing data from UAV sensors."
+  - title: "uav"
+    desc: "Methods for analysing data from Unmaned Aerial Vechicles (UAV) such as Drones."
     contents:
     - starts_with("uav")
     - matches("dimkaAlgorithm")
@@ -53,3 +64,8 @@ reference:
     desc: "Visualization methods."
     contents:
     - starts_with("vis")
+
+  - title: "OpenStreetMap"
+    desc: "Fucntions for the analysis of OSM data (points or networks)."
+    contents:
+    - matches("osm")

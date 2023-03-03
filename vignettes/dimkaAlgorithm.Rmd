@@ -1,8 +1,17 @@
 ---
 title: "Generating GCP targets for UAV flight missions"
 author: "Dimitris Kavroudakis"
+date: "`r Sys.Date()`"
 description: "Generating GCP targets for UAV flight missions"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    keep_md: true
+    fig_caption: yes
+    fig_width: 5
+    fig_height: 5
+  rmarkdown::pdf_document:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Generating GCP targets for UAV flight missions}
   %\VignetteEncoding{UTF-8}
