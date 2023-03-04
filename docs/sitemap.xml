@@ -55,6 +55,9 @@
     <loc>/reference/osm.getPOI.html</loc>
   </url>
   <url>
+    <loc>/reference/osm.getPOI_usingbb.html</loc>
+  </url>
+  <url>
     <loc>/reference/osm.getRoads.html</loc>
   </url>
   <url>

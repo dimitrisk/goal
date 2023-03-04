@@ -95,6 +95,7 @@ single dataset of Points using centroids of polygons when necessary.</p>
 <code><a href="osm.CreateEmptyRaster.html">osm.CreateEmptyRaster</a>()</code>,
 <code><a href="osm.combineAmenities.html">osm.combineAmenities</a>()</code>,
 <code><a href="osm.getFrequency.html">osm.getFrequency</a>()</code>,
+<code><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a>()</code>,
 <code><a href="osm.getPOI.html">osm.getPOI</a>()</code>,
 <code><a href="osm.getRoads.html">osm.getRoads</a>()</code></p></div>
     </div>
@@ -106,7 +107,56 @@ single dataset of Points using centroids of polygons when necessary.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dimitrisk.github.io/goal/" class="external-link">goal</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">sh</span> <span class="op">=</span> <span class="fu"><a href="osm.getPOI.html">osm.getPOI</a></span><span class="op">(</span>inPerioxi <span class="op">=</span> <span class="st">"Mytilene Municipal Unit"</span>, inkey <span class="op">=</span> <span class="st">"shop"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Issuing query to Overpass API ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Announced endpoint: none</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Query complete!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> converting OSM data to sf format</span>
+<span class="r-in"><span><span class="va">sh</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Object of class 'osmdata' with:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>                  $bbox : 39.0080581,26.4556309,39.1730365,26.6159708</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>         $overpass_call : The call submitted to the overpass API</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>                  $meta : metadata including timestamp and version numbers</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>            $osm_points : 'sf' Simple Features Collection with 1006 points</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>             $osm_lines : 'sf' Simple Features Collection with 2 linestrings</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>          $osm_polygons : 'sf' Simple Features Collection with 97 polygons</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>        $osm_multilines : NULL</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     $osm_multipolygons : 'sf' Simple Features Collection with 1 multipolygons</span>
+<span class="r-in"><span><span class="va">shops</span> <span class="op">=</span> <span class="fu">osm.combineShops</span><span class="op">(</span><span class="va">sh</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_centroid assumes attributes are constant over geometries of x</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-in"><span><span class="va">shops</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1104 features and 4 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 26.4562 ymin: 39.03606 xmax: 26.59364 ymax: 39.1719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              osm_id                  name          shop     geotype</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232597560 232597560            Κωτσόβολος   electronics frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251867612 251867612                  Lidl   supermarket frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251868137 251868137         Chinese Store       clothes frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251991641 251991641       ΑΒ Βασιλόπουλος   supermarket frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252369882 252369882             Μy Market   supermarket frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255945997 255945997 Κοινωνικό παντοπωλείο   supermarket frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256627981 256627981               Ανεμώνη confectionery frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257685220 257685220               Φράγκος     furniture frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258057913 258057913            Μολυβιάτης          toys frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258057914 258057914            Μολυβιάτης          toys frompolygon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232597560 POINT (26.55529 39.10176)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251867612 POINT (26.54371 39.13064)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251868137 POINT (26.54284 39.12877)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251991641 POINT (26.54546 39.12553)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252369882  POINT (26.55517 39.1003)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255945997  POINT (26.55562 39.1069)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256627981 POINT (26.45648 39.03617)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257685220 POINT (26.46862 39.12083)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258057913 POINT (26.55745 39.10793)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258057914 POINT (26.55747 39.10811)</span>
 </code></pre></div>
     </div>
   </div>

@@ -93,6 +93,7 @@
 <code><a href="osm.CreateEmptyRaster.html">osm.CreateEmptyRaster</a>()</code>,
 <code><a href="osm.combineShops.html">osm.combineShops</a>()</code>,
 <code><a href="osm.getFrequency.html">osm.getFrequency</a>()</code>,
+<code><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a>()</code>,
 <code><a href="osm.getPOI.html">osm.getPOI</a>()</code>,
 <code><a href="osm.getRoads.html">osm.getRoads</a>()</code></p></div>
     </div>
@@ -104,7 +105,50 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dimitrisk.github.io/goal/" class="external-link">goal</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">am</span> <span class="op">=</span> <span class="fu"><a href="osm.getPOI.html">osm.getPOI</a></span><span class="op">(</span>inPerioxi <span class="op">=</span> <span class="st">"Mytilene Municipal Unit"</span>, inkey <span class="op">=</span> <span class="st">"amenity"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Issuing query to Overpass API ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Announced endpoint: none</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Query complete!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> converting OSM data to sf format</span>
+<span class="r-in"><span><span class="va">amenities</span> <span class="op">=</span> <span class="fu">osm.combineAmenities</span><span class="op">(</span><span class="va">am</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_centroid assumes attributes are constant over geometries of x</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Message 1: +init=epsg:XXXX syntax is deprecated. It might return a CRS with a non-EPSG compliant axis order.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-in"><span><span class="va">amenities</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 4411 features and 4 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 26.45563 ymin: 39.00851 xmax: 26.61245 ymax: 39.17293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              osm_id                                name      amenity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228266105 228266105 Myitlini Airport (Old) Fire Station fire_station</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232407341 232407341                                &lt;NA&gt;         cafe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232598112 232598112                          ERA Aegean       studio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232598293 232598293                Πανεπιστήμιο Αιγαίου   university</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247897826 247897826          ΝΕΚΡΟΤΑΦΕΙΟ ΧΡΥΣΟΜΑΛΛΟΥΣΑΣ   grave_yard</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251858327 251858327                            Ο.Α.Ε.Δ.       school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251858392 251858392                   Κάδοι απορριμάτων    recycling</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251867613 251867613                                &lt;NA&gt;      parking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251869171 251869171                                &lt;NA&gt;      parking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251869815 251869815                  ΣΧΟΛΙΚΟ ΣΥΓΚΡΟΤΗΜΑ       school</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               geotype                  geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228266105 frompolygon POINT (26.60452 39.05245)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232407341 frompolygon POINT (26.54987 39.09576)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232598112 frompolygon POINT (26.54933 39.09052)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232598293 frompolygon  POINT (26.5687 39.08468)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247897826 frompolygon POINT (26.55568 39.08854)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251858327 frompolygon  POINT (26.5263 39.14867)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251858392 frompolygon POINT (26.52373 39.15504)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251867613 frompolygon POINT (26.54363 39.13031)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251869171 frompolygon POINT (26.52924 39.14336)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251869815 frompolygon POINT (26.52162 39.15466)</span>
 </code></pre></div>
     </div>
   </div>
