@@ -33,7 +33,8 @@ Other osm:
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
-\code{\link{osm.getRoads}()}
+\code{\link{osm.getRoads}()},
+\code{\link{osm.osmdata_result_2_bbox_pol}()}
 }
 \author{
 Dimitris Kavroudakis \email{dimitris123@gmail.com}

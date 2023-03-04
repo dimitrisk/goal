@@ -196,3 +196,34 @@ osm.CreateEmptyRaster = function(inPerioxi="Mytilene Municipal Unit"){
   r = raster::raster(xmn=bb[1],xmx=bb[3],ymn=bb[2],ymx=bb[4]  )
   return(r)
 }
+
+
+#' @title osm.osmdata_result_2_bbox_pol
+#' @description Get the bbox of a result, as an SF polygon.
+#'
+#' @param osmdata_result An `osmdata` result.
+#'
+#' @return An SF polygon which is the bbox of the `osmdata` result.
+#'
+#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
+#' @export
+#' @keywords openstreetmap, bbox, polygon
+#' @family osm
+#' @importFrom dplyr %>%
+#' @importFrom stringr str_split
+#' @importFrom devtools install_github
+#' @examples library(devtools)
+#' #install_github("dimitrisk/goal")
+#' library(goal)
+#' library(sf)
+#' library(stringr)
+#' am = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
+#' amenities = osm.combineAmenities(am)
+#' thepol = osm.osmdata_result_2_bbox_pol(am)
+#' 
+osm.osmdata_result_2_bbox_pol = function(osmdata_result){
+  bb = osmdata_result$bbox %>% stringr::str_split(",") %>% dplyr::nth(1) %>% as.vector() %>% as.numeric()
+  pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2], 
+                       proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")) %>% sf::st_as_sf()
+  return(pol)
+}
