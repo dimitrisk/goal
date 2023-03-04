@@ -18,16 +18,134 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 ## Introduction
 
 Use of goal package 'osm' group of functions for the analysis of [OpenStreetMap](https://www.openstreetmap.org) POIs (Points of Interest) and road network. 
+
+The following two links, can help on identifying OSM entities (Municipalities, cities, ...)
+
+* [Search OSM](https://nominatim.openstreetmap.org/ui/search.html)
+
+* [Bounding BOX](http://bboxfinder.com/#39.073311,26.516018,39.123935,26.584167)
 
   
 
 ## POIs analysis
 
-The goal package includes a sample dataset for the presentation of the _uav_ examples. 
-  
+Aim: Analyse the location of Amenities and Shops in this municipality.
+
+First install `goal` library
+```{r}
+devtools::install_github("dimitrisk/goal")
+library(goal)
+library(osmdata)
+library(raster)
+```
+
+### Amenities
+
+Get all amenities in this municipality (Points, Polygons, Multipolygons)
+```{r}
+am = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
+am
+
+#' Merge all amenities (Points, Polygons, Multipolygons), and convert them to points.
+amenities = osm.combineAmenities(am)
+amenities
+```
+
+Frequency table of amenities types in this municipality
+```{r}
+freq1 = osm.getFrequency(amenities, inword = "amenity", removeNA = F)
+freq1
+```
+
+
+
+ 
+### Shops
+
+
+Get all shops in this municipality (Points, Polygons, Multipolygons)
+```{r}
+sh = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
+sh
+
+#' Merge all shops (Points, Polygons, Multipolygons), and convert them to points.
+shops = osm.combineShops(sh)
+shops
+```
+
+Frequency table of shop types in this municipality
+```{r}
+freq2 = osm.getFrequency(shops, inword = "shop", removeNA = F)
+freq2
+```
+
+
+### Density
+ 
+Create empty raster of this area and get the polygon of this area.
+```{r}
+r = osm.CreateEmptyRaster(inPerioxi = "Mytilene Municipal Unit")
+
+#' Get polygon of the area
+mypol = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
+```
+
+Sum of shops per cell
+```{r}
+density1 = raster::rasterize(shops, r, field=1, fun=sum) # sum
+plot(density1)
+plot(mypol, add=T)
+```
+
+Sum of amenities per cell
+```{r}
+density2 = raster::rasterize(amenities, r, field=1, fun=sum) # sum
+plot(density2)
+plot(mypol, add=T)
+```
+
+
+
+### Presense/Absense
+
+Presense/Absence of shops in cells
+```{r }
+presense1 = raster::rasterize(shops, r, field=1) # presense
+plot(presense1)
+plot(mypol, add=T)
+```
+
+Presense/Absence of shops in cells
+```{r }
+presense2 = raster::rasterize(amenities, r, field=1) # presense
+plot(presense2)
+plot(mypol, add=T)
+```
+
+### Web Map
+
+```{r message=F, warn=F}
+#' web map1
+library(leaflet)
+leaflet(amenities) %>% addTiles() %>%  leaflet::addMarkers(popup = ~as.character(amenity), label = ~as.character(amenity))
+
+#' web map2
+library(simplevis)
+library(dplyr)
+library(palmerpenguins)
+library(stars)
+leaf_sf_col(amenities,  col_var = amenity)
+```
+
+
+
 ## Road network analysis
 
-Now  
+(to be included later)
