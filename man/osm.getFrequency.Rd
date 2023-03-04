@@ -21,13 +21,17 @@ Get Frequency Table
 }
 \examples{
 library(goal)
-
+sh = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
+shops = osm.combineShops(sh)
+freq2 = osm.getFrequency(shops, inword = "shop", removeNA = F)
+freq2
 }
 \seealso{
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
+\code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()}
 }

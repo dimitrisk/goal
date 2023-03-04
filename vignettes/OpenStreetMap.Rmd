@@ -52,8 +52,16 @@ Get all amenities in this municipality (Points, Polygons, Multipolygons)
 ```{r}
 am = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
 am
+```
 
-#' Merge all amenities (Points, Polygons, Multipolygons), and convert them to points.
+Alternatively, we can use the bounding box of an area instead of the name of a municipality.
+```{r}
+myt = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
+myt
+```
+
+After downloading the POIs (`am`), we merge all POIs together (Points, Polygons, Multipolygons), and convert them to points.
+```{r}
 amenities = osm.combineAmenities(am)
 amenities
 ```

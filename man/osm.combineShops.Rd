@@ -18,13 +18,17 @@ single dataset of Points using centroids of polygons when necessary.
 }
 \examples{
 library(goal)
-
+sh = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
+sh
+shops = osm.combineShops(sh)
+shops
 }
 \seealso{
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()}
 }

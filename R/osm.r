@@ -49,6 +49,32 @@ osm.getPOI = function(inPerioxi="Mytilene Municipal Unit", inkey ="amenity"){
   return(q)
 }
 
+
+
+
+#' @title osm.getPOI_usingbb
+#' @description Get all POIs of a city. Providing the bounding box 
+#' we get back an osmdata object of Spatial Feature ("sf") type. 
+#' 
+#' @param inbb A vector of coordinates, representing the bounding box of the area.
+#' @param inkey The name of a key such as: `amenities`, `shops`, ...
+#' @return An `osmdata` object of Spatial Feature ("sf") type. 
+#'
+#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
+#' @export
+#' @keywords openstreetmap, frequency, POIs
+#' @family osm
+#' @importFrom dplyr %>%
+#' @examples library(goal)
+#' myt = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247) )
+#' myt
+osm.getPOI_usingbb = function(inbb=c(26.547303,39.101658,26.564641,39.113247) , inkey ="amenity"){
+  q <- osmdata::opq(bbox=inbb) %>% osmdata::add_osm_feature(key=inkey) %>% osmdata::osmdata_sf(quiet=F)
+  return(q)
+}
+
+
+
 #' @title osm.combineAmenities
 #' @description Combine all AMENITIES results into single dataset (Points, Polygons, Myltipolygons) (centroids).
 #' 
@@ -61,9 +87,11 @@ osm.getPOI = function(inPerioxi="Mytilene Municipal Unit", inkey ="amenity"){
 #' @family osm
 #' @importFrom dplyr %>%
 #' @examples library(goal)
-#' 
+#' am = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
+#' amenities = osm.combineAmenities(am)
+#' amenities
 osm.combineAmenities = function(inam){
-  #TODO: osm_id, name, amenity ??
+
   #TODO: check if incoming is actually of type OSMresult dataset.
   converted_pol = inam$osm_polygons %>% sf::st_centroid() %>% dplyr::select(osm_id, name, amenity)%>% 
     sf::st_transform("+init=epsg:4326") %>% dplyr::mutate(geotype="frompolygon")
@@ -91,9 +119,11 @@ osm.combineAmenities = function(inam){
 #' @family osm
 #' @importFrom dplyr %>%
 #' @examples library(goal)
-#' 
+#' sh = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
+#' sh
+#' shops = osm.combineShops(sh)
+#' shops
 osm.combineShops = function(inam){
-  #TODO: osm_id, name, shop ??
   #TODO: check if incoming is actually of type OSMresult dataset.
   
   converted_pol = inam$osm_polygons %>% sf::st_centroid() %>% dplyr::select(osm_id, name, shop)%>% 
@@ -122,7 +152,10 @@ osm.combineShops = function(inam){
 #' @family osm
 #' @importFrom dplyr %>%
 #' @examples library(goal)
-#' 
+#' sh = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
+#' shops = osm.combineShops(sh)
+#' freq2 = osm.getFrequency(shops, inword = "shop", removeNA = F)
+#' freq2
 osm.getFrequency = function(indf, inword="shop", removeNA=T){
   #indf=shops
   #inword="shops"

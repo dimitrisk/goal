@@ -17,13 +17,16 @@ Combine all AMENITIES results into single dataset (Points, Polygons, Myltipolygo
 }
 \examples{
 library(goal)
-
+am = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
+amenities = osm.combineAmenities(am)
+amenities
 }
 \seealso{
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()}
 }

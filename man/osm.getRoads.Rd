@@ -26,6 +26,7 @@ Other osm:
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()}
 }
 \author{
