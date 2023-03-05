@@ -24,7 +24,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 ## Introduction
 
-Use of goal package 'osm' group of functions for the analysis of [OpenStreetMap](https://www.openstreetmap.org) POIs (Points of Interest) and road network. 
+Use of `goal` package and more specificaly the 'osm' group of functions for the analysis of [OpenStreetMap](https://www.openstreetmap.org) POIs (Points of Interest) and road network. 
 
 The following two links, can help on identifying OSM entities (Municipalities, cities, ...)
 
