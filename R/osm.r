@@ -222,8 +222,11 @@ osm.CreateEmptyRaster = function(inPerioxi="Mytilene Municipal Unit"){
 #' thepol = osm.osmdata_result_2_bbox_pol(am)
 #' 
 osm.osmdata_result_2_bbox_pol = function(osmdata_result){
+  #osmdata_result = am
+  
+  if(!nrow(am$osm_points)>0){stop("The 'osmdata_result' used in 'osm.osmdata_result_2_bbox_pol', do not contain any points. I need the points in order to copy their CRS.")}
+  
   bb = osmdata_result$bbox %>% stringr::str_split(",") %>% dplyr::nth(1) %>% as.vector() %>% as.numeric()
-  pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2], 
-                       proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")) %>% sf::st_as_sf()
+  pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2]) %>% sf::st_as_sf() %>% st_transform(st_crs(am$osm_points))
   return(pol)
 }
