@@ -154,6 +154,62 @@ leaf_sf_col(amenities,  col_var = amenity)
 ```
 
 
+### Custom bounding box
+
+We now use a custom bounding box and then download data only for this area.
+```{r}
+am = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" ) # Download
+mypol_bb = osm.osmdata_result_2_bbox_pol(am) # get polygon of this bounding box.
+amenities = osm.combineAmenities(am) # combine all amenities into points.
+```
+
+Now get the general polygon of this municipality (coastline)
+```{r}
+mypol2 = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
+```
+
+What we have so far:
+```{r}
+plot(mypol2, border="red")
+plot(mypol_bb, add=T)
+plot(amenities, add=T)
+```
+
+zoomed in:
+```{r}
+plot(mypol_bb )
+plot(mypol2, border="red", add=T)
+plot(amenities, add=T)
+```
+
+
+We need to calculate the intersection between municipality polygon (coastline) and the 
+custom square bounding box we have defined.
+
+```{r}
+clip1 = sf::st_intersection(mypol_bb,mypol2)
+```
+
+show the area
+```{r}
+plot(clip1)
+plot(mypol2, border="red", add=T)
+plot(amenities, add=T)
+```
+
+Create an empty raster of this intersection:
+```{r}
+r = raster(clip1 )
+```
+
+Calculate the density of amenities (points) in this clipped area:
+```{r}
+density1 = raster::rasterize(amenities, r, field=1, fun=sum) # sum
+plot(density1)
+plot(clip1, add=T)
+plot(as_Spatial(amenities), add=T, cex=0.5)
+```
+
 
 ## Road network analysis
 
