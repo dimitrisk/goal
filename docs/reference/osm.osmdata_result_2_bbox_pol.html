@@ -106,21 +106,26 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dimitrisk/goal"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Skipping install of 'goal' from a github remote, the SHA1 (cd4e27f3) has not changed since last install.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   Use `force = TRUE` to force installation</span>
+<span class="r-in"><span><span class="co">#install_github("dimitrisk/goal")</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dimitrisk.github.io/goal/" class="external-link">goal</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">am</span> <span class="op">=</span> <span class="fu">goal</span><span class="fu">::</span><span class="fu"><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26.547303</span>,<span class="fl">39.101658</span>,<span class="fl">26.564641</span>,<span class="fl">39.113247</span><span class="op">)</span>, inkey <span class="op">=</span><span class="st">"amenity"</span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0; sf_use_s2() is TRUE</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">am</span> <span class="op">=</span> <span class="fu"><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26.547303</span>,<span class="fl">39.101658</span>,<span class="fl">26.564641</span>,<span class="fl">39.113247</span><span class="op">)</span>, inkey <span class="op">=</span><span class="st">"amenity"</span> <span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Issuing query to Overpass API ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Announced endpoint: lz4.overpass-api.de/api/</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Announced endpoint: none</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Query complete!</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> converting OSM data to sf format</span>
-<span class="r-in"><span><span class="va">thepol</span> <span class="op">=</span> <span class="fu">goal</span><span class="fu">::</span><span class="fu">osmdata_result_2_bbox_pol</span><span class="op">(</span><span class="va">am</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> 'osmdata_result_2_bbox_pol' is not an exported object from 'namespace:goal'</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">thepol</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'plot': object 'thepol' not found</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">as_Spatial</span><span class="op">(</span><span class="va">amenities</span><span class="op">)</span>, add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'plot': could not find function "as_Spatial"</span>
+<span class="r-in"><span><span class="va">amenities</span> <span class="op">=</span> <span class="fu"><a href="osm.combineAmenities.html">osm.combineAmenities</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_centroid assumes attributes are constant over geometries of x</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
+<span class="r-in"><span><span class="va">thepol</span> <span class="op">=</span> <span class="fu">osm.osmdata_result_2_bbox_pol</span><span class="op">(</span><span class="va">am</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in nrow(am$osm_points):</span> object 'am' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
