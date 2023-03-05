@@ -1,7 +1,7 @@
 ---
 title: "Generating GCP targets for UAV flight missions"
 author: "Dimitris Kavroudakis"
-date: "2023-03-03"
+date: "2023-03-05"
 description: "Generating GCP targets for UAV flight missions"
 output: 
   rmarkdown::html_vignette:
@@ -51,7 +51,7 @@ print(goaldata.data2)
 ```
 
 These 5 points define a polygon area which is the area of our case study.
-We then use the _'uav.GenerateTargets'_ function to generate all possible targets in this area.
+Now we will use the _'uav.GenerateTargets'_ function to generate a set of point targets in this area.
 
  
 
@@ -82,7 +82,7 @@ text(one$simia , labels = one$simia$id, col="brown", pos=2)
 #rgdal::writeOGR(one$simia,dsn=paste0("Targets.shp"),layer="Targets",driver="ESRI Shapefile", overwrite_layer = T)
 ```
 
-As you can see in the figure above, we generated 17 targets inside this polygon. These points are quite a few, and we need to reduce them. We use the _'uav.DoReduction'_ function for reducing the number of "targets" based on the density of points. 
+We generated 17 targets inside this polygon. These points are quite a few, and we need to reduce them. We use the _'uav.DoReduction'_ function for reducing the number of "targets" based on the density of points. 
 
 Using the _'uav.DoReduction'_ function we need to define a cell size which will be used for the calculation of points density.
 
