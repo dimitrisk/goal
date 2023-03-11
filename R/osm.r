@@ -210,8 +210,9 @@ osm.osmdata_result_2_bbox_pol = function(osmdata_result){
 
 
 
-#' @title osm.getClipedRoads
-#' @description Get the roads of an area. Either by name of area (inPerioxi) or by bounding box (incoordinates).
+#' @title osm.getRoads
+#' @description Get the roads of an area. 
+#' Either by name of area (inPerioxi) or by bounding box (incoordinates).
 #'
 #' @param incoordinates Four coordinates of the bounding box.
 #' @param inPerioxi Name of an area 
@@ -273,4 +274,37 @@ osm.getRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.116810
   return(net2)
 }
 
- 
+
+
+
+
+
+
+#' @title osm.bb_2_pol
+#' @description Bounding Box to Polygon
+#' Either by name of area (inPerioxi) or by bounding box (incoordinates).
+#'
+#' @param inVec Four  
+#' @param outcrs CRS of the the output  
+#'
+#' @return An sf polygon
+#'
+#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
+#' @export
+#' @keywords openstreetmap, bbox, network
+#' @family osm
+#' @importFrom dplyr %>%
+#' @examples library(goal)
+#' library(sf)
+#'  
+#' q=c(26.545029,39.088569,26.570177,39.116810)
+#' poly = goal::osm.bb_2_pol(q, outcrs=2100) 
+#' 
+osm.bb_2_pol = function(inVec = c(26.545029,39.088569,26.570177,39.116810), outcrs=4326){
+  Poly_Coord_df = data.frame(lon = c(q[3],q[1]), lat =c(q[4],q[2]) )
+  #result <- Poly_Coord_df %>%  st_as_sf(coords = c("lon", "lat"),  crs = 4326) %>%  st_bbox() %>%  st_as_sfc() %>% st_transform(incrs)
+  result <- Poly_Coord_df %>%  sf::st_as_sf(coords = c("lon", "lat"),  crs = 4326) %>%  
+    sf::st_bbox() %>%  sf::st_as_sfc()  %>% sf::st_transform(outcrs)
+  #st_crs(result) <- 4326
+  return(result)
+}

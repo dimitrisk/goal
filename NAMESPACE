@@ -2,6 +2,7 @@
 
 export(geo.PointsAlongLines)
 export(osm.CreateEmptyRaster)
+export(osm.bb_2_pol)
 export(osm.combineAmenities)
 export(osm.combineShops)
 export(osm.getFrequency)

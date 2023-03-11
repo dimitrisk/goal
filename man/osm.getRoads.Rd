@@ -2,7 +2,7 @@
 % Please edit documentation in R/osm.r
 \name{osm.getRoads}
 \alias{osm.getRoads}
-\title{osm.getClipedRoads}
+\title{osm.getRoads}
 \usage{
 osm.getRoads(
   incoordinates = c(26.545029, 39.088569, 26.570177, 39.11681),
@@ -24,7 +24,8 @@ osm.getRoads(
 An sfnetwork
 }
 \description{
-Get the roads of an area. Either by name of area (inPerioxi) or by bounding box (incoordinates).
+Get the roads of an area.
+Either by name of area (inPerioxi) or by bounding box (incoordinates).
 }
 \examples{
 library(goal)
@@ -45,6 +46,7 @@ mynetwork2
 \seealso{
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
+\code{\link{osm.bb_2_pol}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},

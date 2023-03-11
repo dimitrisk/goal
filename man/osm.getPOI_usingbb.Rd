@@ -29,6 +29,7 @@ myt
 \seealso{
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
+\code{\link{osm.bb_2_pol}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},

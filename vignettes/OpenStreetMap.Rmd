@@ -166,6 +166,13 @@ Now get the general polygon of this municipality (coastline)
 mypol2 = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
 ```
 
+
+```{r}
+q=c(26.545029,39.088569,26.570177,39.116810)
+poly = bb_2_pol(q, outcrs=2100) 
+plot(poly)
+```
+
 What we have so far:
 ```{r}
 plot(mypol2, border="red")
