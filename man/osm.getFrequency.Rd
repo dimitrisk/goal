@@ -31,7 +31,6 @@ Other osm:
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
-\code{\link{osm.getClipedRoads}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()},

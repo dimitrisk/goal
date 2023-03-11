@@ -27,7 +27,6 @@ shops
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineAmenities}()},
-\code{\link{osm.getClipedRoads}()},
 \code{\link{osm.getFrequency}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},

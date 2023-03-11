@@ -2,30 +2,51 @@
 % Please edit documentation in R/osm.r
 \name{osm.getRoads}
 \alias{osm.getRoads}
-\title{osm.getRoads}
+\title{osm.getClipedRoads}
 \usage{
-osm.getRoads(inPerioxi = "Mytilene Municipal Unit")
+osm.getRoads(
+  incoordinates = c(26.545029, 39.088569, 26.570177, 39.11681),
+  inPerioxi = "Mytilene Municipal Unit",
+  withBB = FALSE,
+  outcrs = 2100
+)
 }
 \arguments{
-\item{inPerioxi}{ssd}
+\item{incoordinates}{Four coordinates of the bounding box.}
+
+\item{inPerioxi}{Name of an area}
+
+\item{withBB}{Boolean indicating if we shall use a bounding box (incoordinates) or the name of an area (inPerioxi).}
+
+\item{outcrs}{CRS of the the output}
 }
 \value{
-A nice
+An sfnetwork
 }
 \description{
-Get roads of a city
-of Spatial Feature ("sf") type.
+Get the roads of an area. Either by name of area (inPerioxi) or by bounding box (incoordinates).
 }
 \examples{
 library(goal)
+library(sf)
+library(sfnetworks)
+library(osmdata)
+mynetwork = osm.getRoads(incoordinates= c(26.545029,39.088569,26.570177,39.116810), 
+  withBB=TRUE, outcrs=2100
+)
+mynetwork 
 
+mynetwork2 = osm.getRoads(inPerioxi="Mytilene Municipal Unit", 
+  withBB=FALSE, outcrs=2100
+)
+mynetwork2 
+ 
 }
 \seealso{
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
-\code{\link{osm.getClipedRoads}()},
 \code{\link{osm.getFrequency}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
@@ -35,5 +56,6 @@ Other osm:
 Dimitris Kavroudakis \email{dimitris123@gmail.com}
 }
 \concept{osm}
+\keyword{bbox,}
 \keyword{network}
 \keyword{openstreetmap,}

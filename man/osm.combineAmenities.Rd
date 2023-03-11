@@ -25,7 +25,6 @@ amenities
 Other osm: 
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineShops}()},
-\code{\link{osm.getClipedRoads}()},
 \code{\link{osm.getFrequency}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},

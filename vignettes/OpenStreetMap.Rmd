@@ -24,9 +24,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 ## Introduction
 
-Use of `goal` package and more specificaly the 'osm' group of functions for the analysis of [OpenStreetMap](https://www.openstreetmap.org) POIs (Points of Interest) and road network. 
-
-The following two links, can help on identifying OSM entities (Municipalities, cities, ...)
+Use of `goal` package and more specificaly the 'osm' group of functions for the analysis of [OpenStreetMap](https://www.openstreetmap.org) POIs (Points of Interest) and road network. The following two links, can help on identifying OSM entities (Municipalities, cities, ...)
 
 * [Search OSM](https://nominatim.openstreetmap.org/ui/search.html)
 
@@ -37,7 +35,6 @@ The following two links, can help on identifying OSM entities (Municipalities, c
 ## POIs analysis
 
 Aim: Analyse the location of Amenities and Shops in this municipality.
-
 First install `goal` library
 ```{r}
 library(devtools)
@@ -49,19 +46,20 @@ library(raster)
 
 ### Amenities
 
-Get all amenities in this municipality (Points, Polygons, Multipolygons)
+Download all amenities in this municipality (Points or Polygons or Multipolygons)
 ```{r}
 am = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
 am
 ```
 
-Alternatively, we can use the bounding box of an area instead of the name of a municipality.
+Alternatively, we can use a bounding box of an area instead of the name of a municipality.
 ```{r}
 myt = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
 myt
 ```
 
-After downloading the POIs (`am`), we merge all POIs together (Points, Polygons, Multipolygons), and convert them to points.
+After downloading the POIs (`am`), we merge all POIs together (Points, Polygons, Multipolygons), 
+and convert them all to points.
 ```{r}
 amenities = osm.combineAmenities(am)
 amenities
@@ -213,4 +211,11 @@ plot(as_Spatial(amenities), add=T, cex=0.5)
 
 ## Road network analysis
 
-(to be included later)
+Get all roads of this municipality:
+```{r}
+myr1 = osm.getRoads(inPerioxi = "Mytilene Municipal Unit", withBB=FALSE, outcrs = 2100)
+myr1
+
+myr2 = osm.getRoads(incoordinates = c(26.545029,39.088569,26.570177,39.116810), withBB=TRUE, outcrs = 2100 )
+myr2
+```

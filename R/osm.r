@@ -2,30 +2,6 @@
 
 # ========================   Helper Functions   ========================================
 
-# 
-#' @title osm.getRoads
-#' @description Get roads of a city
-#' of Spatial Feature ("sf") type. 
-#' 
-#' @param inPerioxi  ssd
-#' @return A nice 
-#'
-#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
-#' @export
-#' @keywords openstreetmap, network
-#' @family osm
-#' @importFrom dplyr %>%
-#' @examples library(goal)
-#' 
-osm.getRoads = function(inPerioxi="Mytilene Municipal Unit"){
-  myt = osmdata::opq("Mytilene Municipal Unit") %>% 
-    osmdata::add_osm_feature(
-      key = 'highway',
-      value = c("trunk", "trunk_link", "primary","primary_link","secondary", "secondary_link", 
-                "tertiary","tertiary_link", "residential", "unclassified")) %>% 
-    osmdata::osmdata_sf(quiet = FALSE) %>% osmdata::osm_poly2line()
-  return(myt)
-}
 
 
 #' @title osm.getPOI
@@ -235,10 +211,12 @@ osm.osmdata_result_2_bbox_pol = function(osmdata_result){
 
 
 #' @title osm.getClipedRoads
-#' @description Get the roads of an area by bounding box.
+#' @description Get the roads of an area. Either by name of area (inPerioxi) or by bounding box (incoordinates).
 #'
-#' @param incoordinates An  
-#' @param outcrs An  
+#' @param incoordinates Four coordinates of the bounding box.
+#' @param inPerioxi Name of an area 
+#' @param withBB Boolean indicating if we shall use a bounding box (incoordinates) or the name of an area (inPerioxi).
+#' @param outcrs CRS of the the output  
 #'
 #' @return An sfnetwork
 #'
@@ -251,16 +229,41 @@ osm.osmdata_result_2_bbox_pol = function(osmdata_result){
 #' library(sf)
 #' library(sfnetworks)
 #' library(osmdata)
-#' mynetwork = osm.getClipedRoads(incoordinates= c(26.545029,39.088569,26.570177,39.116810), 
-#'   outcrs=2100
+#' mynetwork = osm.getRoads(incoordinates= c(26.545029,39.088569,26.570177,39.116810), 
+#'   withBB=TRUE, outcrs=2100
 #' )
 #' mynetwork 
+#' 
+#' mynetwork2 = osm.getRoads(inPerioxi="Mytilene Municipal Unit", 
+#'   withBB=FALSE, outcrs=2100
+#' )
+#' mynetwork2 
 #'  
-osm.getClipedRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.116810), outcrs=2100 ){
-  myt <- osmdata::opq(bbox=incoordinates) %>% osmdata::add_osm_feature(key='highway', 
-                                         value = c("trunk", "trunk_link", "primary","primary_link","secondary",
-                                                   "secondary_link", "tertiary","tertiary_link","residential", "unclassified")) %>% 
-    osmdata::osmdata_sf() #%>% osm_poly2line()  
+osm.getRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.116810), 
+                        inPerioxi="Mytilene Municipal Unit",
+                        withBB=FALSE,
+                        outcrs=2100 ){
+  
+  if( withBB){
+    cat("\nUsing bbox\n")
+    myt <- osmdata::opq(bbox=incoordinates) %>% 
+      osmdata::add_osm_feature(
+        key='highway',
+        value = c("trunk", "trunk_link", "primary","primary_link","secondary",
+                  "secondary_link", "tertiary","tertiary_link","residential", 
+                  "unclassified")) %>% 
+      osmdata::osmdata_sf() #%>% osm_poly2line()  
+  }else{
+    cat("\nUsing name of area\n")
+    myt <- osmdata::opq(inPerioxi) %>% 
+      osmdata::add_osm_feature(
+        key='highway',
+        value = c("trunk", "trunk_link", "primary","primary_link","secondary",
+                  "secondary_link", "tertiary","tertiary_link","residential", 
+                  "unclassified")) %>% 
+      osmdata::osmdata_sf() #%>% osm_poly2line()  
+  }
+ 
   
   my_roads = myt$osm_lines %>% dplyr::select(osm_id,name,highway) 
   net = sfnetworks::as_sfnetwork(my_roads, directed = FALSE ) #%>%  st_transform(4326)   #%>%  st_transform(2100)  
@@ -269,3 +272,5 @@ osm.getClipedRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.
   net2 <- sf::st_transform(net, outcrs)
   return(net2)
 }
+
+ 
