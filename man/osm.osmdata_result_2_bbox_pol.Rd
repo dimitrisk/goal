@@ -21,9 +21,9 @@ library(devtools)
 library(goal)
 library(sf)
 library(stringr)
-am = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
-amenities = osm.combineAmenities(am)
-thepol = osm.osmdata_result_2_bbox_pol(am)
+am = goal::osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
+amenities = goal::osm.combineAmenities(am)
+thepol = goal::osm.osmdata_result_2_bbox_pol(am)
 
 }
 \seealso{
@@ -31,6 +31,7 @@ Other osm:
 \code{\link{osm.CreateEmptyRaster}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
+\code{\link{osm.getClipedRoads}()},
 \code{\link{osm.getFrequency}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},

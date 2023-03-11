@@ -217,16 +217,55 @@ osm.CreateEmptyRaster = function(inPerioxi="Mytilene Municipal Unit"){
 #' library(goal)
 #' library(sf)
 #' library(stringr)
-#' am = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
-#' amenities = osm.combineAmenities(am)
-#' thepol = osm.osmdata_result_2_bbox_pol(am)
+#' am = goal::osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
+#' amenities = goal::osm.combineAmenities(am)
+#' thepol = goal::osm.osmdata_result_2_bbox_pol(am)
 #' 
 osm.osmdata_result_2_bbox_pol = function(osmdata_result){
   #osmdata_result = am
   
-  if(!nrow(am$osm_points)>0){stop("The 'osmdata_result' used in 'osm.osmdata_result_2_bbox_pol', do not contain any points. I need the points in order to copy their CRS.")}
+  if(!nrow(osmdata_result$osm_points)>0){stop("The 'osmdata_result' used in 'osm.osmdata_result_2_bbox_pol', do not contain any points. I need the points in order to copy their CRS.")}
   
   bb = osmdata_result$bbox %>% stringr::str_split(",") %>% dplyr::nth(1) %>% as.vector() %>% as.numeric()
-  pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2]) %>% sf::st_as_sf() %>% st_transform(st_crs(am$osm_points))
+  pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2]) %>% sf::st_as_sf() %>% sf::st_transform(sf::st_crs(osmdata_result$osm_points))
   return(pol)
+}
+
+
+
+
+#' @title osm.getClipedRoads
+#' @description Get the roads of an area by bounding box.
+#'
+#' @param incoordinates An  
+#' @param outcrs An  
+#'
+#' @return An sfnetwork
+#'
+#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
+#' @export
+#' @keywords openstreetmap, bbox, network
+#' @family osm
+#' @importFrom dplyr %>%
+#' @examples library(goal)
+#' library(sf)
+#' library(sfnetworks)
+#' library(osmdata)
+#' mynetwork = osm.getClipedRoads(incoordinates= c(26.545029,39.088569,26.570177,39.116810), 
+#'   outcrs=2100
+#' )
+#' mynetwork 
+#'  
+osm.getClipedRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.116810), outcrs=2100 ){
+  myt <- osmdata::opq(bbox=incoordinates) %>% osmdata::add_osm_feature(key='highway', 
+                                         value = c("trunk", "trunk_link", "primary","primary_link","secondary",
+                                                   "secondary_link", "tertiary","tertiary_link","residential", "unclassified")) %>% 
+    osmdata::osmdata_sf() #%>% osm_poly2line()  
+  
+  my_roads = myt$osm_lines %>% dplyr::select(osm_id,name,highway) 
+  net = sfnetworks::as_sfnetwork(my_roads, directed = FALSE ) #%>%  st_transform(4326)   #%>%  st_transform(2100)  
+  
+  sf::st_crs(net) <- 4326
+  net2 <- sf::st_transform(net, outcrs)
+  return(net2)
 }

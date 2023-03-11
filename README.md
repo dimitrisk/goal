@@ -23,6 +23,8 @@ includes 4 group of functions:
 
 5)  functions for OpenStreetMap data analysis (`osm`).
 
+6)  functions for Spatial Analysis (`spa`).
+
 ## Installation
 
 You can install goal from GitHub with:

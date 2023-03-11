@@ -36,6 +36,8 @@ This is an R library for the **analysis** of geographical data. It includes 4 gr
 
 5) functions for OpenStreetMap data analysis (`osm`).
 
+6) functions for Spatial Analysis (`spa`).
+
 
 
 

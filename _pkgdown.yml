@@ -39,16 +39,16 @@ reference:
     - matches("geo")
 
   - title: "Stats"
-    desc: "Statistical fucntions."
+    desc: "Statistical functions."
     contents:
     - matches("stats")
 
-  - title: "data"
-    desc: "Datasets included in the `goal` package."
+  - title: "Data"
+    desc: "Datasets in `goal` package."
     contents:
     - starts_with("goaldata")
 
-  - title: "uav"
+  - title: "Uav"
     desc: "Methods for analysing data from Unmaned Aerial Vechicles (UAV) such as Drones."
     contents:
     - starts_with("uav")
@@ -63,3 +63,8 @@ reference:
     desc: "Fucntions for the analysis of OSM data (points or networks)."
     contents:
     - matches("osm")
+
+  - title: "Spatial Analysis"
+    desc: "Fucntions for spatial analysis."
+    contents:
+    - matches("spa")

@@ -49,6 +49,9 @@
     <loc>/reference/osm.combineShops.html</loc>
   </url>
   <url>
+    <loc>/reference/osm.getClipedRoads.html</loc>
+  </url>
+  <url>
     <loc>/reference/osm.getFrequency.html</loc>
   </url>
   <url>
@@ -62,6 +65,9 @@
   </url>
   <url>
     <loc>/reference/osm.osmdata_result_2_bbox_pol.html</loc>
+  </url>
+  <url>
+    <loc>/reference/spa.MeanCenter.html</loc>
   </url>
   <url>
     <loc>/reference/stats.SimilarityOfVectors.html</loc>
