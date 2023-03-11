@@ -211,11 +211,18 @@ plot(as_Spatial(amenities), add=T, cex=0.5)
 
 ## Road network analysis
 
-Get all roads of this municipality:
+Get all roads of this municipality by using just the municipality name:
 ```{r}
-myr1 = osm.getRoads(inPerioxi = "Mytilene Municipal Unit", withBB=FALSE, outcrs = 2100)
+myr1 = osm.getRoads(inPerioxi = "Mytilene Municipal Unit", 
+                    withBB=FALSE, outcrs = 2100)
 myr1
+plot(myr1)
+```
 
-myr2 = osm.getRoads(incoordinates = c(26.545029,39.088569,26.570177,39.116810), withBB=TRUE, outcrs = 2100 )
+Get all roads of this area by using a bounding box:
+```{r}
+myr2 = osm.getRoads(incoordinates = c(26.545029,39.088569,26.570177,39.116810), 
+                    withBB=TRUE, outcrs = 2100 )
 myr2
+plot(myr2)
 ```
