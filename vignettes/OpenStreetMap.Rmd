@@ -169,7 +169,7 @@ mypol2 = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$mu
 
 ```{r}
 q=c(26.545029,39.088569,26.570177,39.116810)
-poly = bb_2_pol(q, outcrs=2100) 
+poly = osm.bb_2_pol(q, outcrs=2100) 
 plot(poly)
 ```
 
