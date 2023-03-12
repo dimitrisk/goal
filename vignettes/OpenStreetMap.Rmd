@@ -223,7 +223,7 @@ Get all roads of this municipality by using just the municipality name:
 myr1 = osm.getRoads(inPerioxi = "Mytilene Municipal Unit", 
                     withBB=FALSE, outcrs = 2100)
 myr1
-plot(myr1)
+plot(myr1, col="blue", main="sfnetworks Roads (by municipality name)")
 ```
 
 Get all roads of this area by using a bounding box:
@@ -231,5 +231,17 @@ Get all roads of this area by using a bounding box:
 myr2 = osm.getRoads(incoordinates = c(26.545029,39.088569,26.570177,39.116810), 
                     withBB=TRUE, outcrs = 2100 )
 myr2
-plot(myr2)
+plot(myr2, col="grey", main="sfnetworks Roads (by bbox)")
+```
+
+example
+```{r}
+q=c(26.545029,39.088569,26.570177,39.116810)
+net2 = osm.getRoads(q, withBB=TRUE, outcrs=4326)
+poly = osm.bb_2_pol(q, outcrs =  4326)
+ 
+net3 = osm.ClipSFnetwork_with_poly(net2, poly)
+
+plot(net3,col="grey", main="Clipped sfnetwork")
+plot(poly,add=T)
 ```
