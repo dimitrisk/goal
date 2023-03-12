@@ -336,8 +336,8 @@ osm.bb_2_pol = function(inVec = c(26.545029,39.088569,26.570177,39.116810), outc
 #' 
 #' net3 = osm.ClipSFnetwork_with_poly(net2, poly)
 #' 
-#' plot(net3,col="grey")
-#' plot(poly,add=T)
+#' plot(net3, col="grey")
+#' plot(poly, add = TRUE)
 osm.ClipSFnetwork_with_poly = function(innet, inpol){
   result = innet %>% 
     sfnetworks::activate("edges") %>% sf::st_intersection(inpol) %>%

@@ -38,7 +38,7 @@ Aim: Analyse the location of Amenities and Shops in this municipality.
 First install `goal` library
 ```{r}
 library(devtools)
-devtools::install_github("dimitrisk/goal", quiet=T)
+#devtools::install_github("dimitrisk/goal", quiet=T)
 library(goal)
 #library(osmdata)
 library(raster)
