@@ -24,6 +24,7 @@ result
 }
 \seealso{
 Other osm: 
+\code{\link{osm.ClipSFnetwork_with_poly}()},
 \code{\link{osm.bb_2_pol}()},
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},

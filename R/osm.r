@@ -298,7 +298,7 @@ osm.getRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.116810
 #' library(sf)
 #'  
 #' q=c(26.545029,39.088569,26.570177,39.116810)
-#' poly = goal::osm.bb_2_pol(q, outcrs=2100) 
+#' poly = goal::osm.bb_2_pol(q, outcrs=4326) 
 #' 
 osm.bb_2_pol = function(inVec = c(26.545029,39.088569,26.570177,39.116810), outcrs=4326){
   Poly_Coord_df = data.frame(lon = c(inVec[3],inVec[1]), lat =c(inVec[4],inVec[2]) )
@@ -306,5 +306,41 @@ osm.bb_2_pol = function(inVec = c(26.545029,39.088569,26.570177,39.116810), outc
   result = Poly_Coord_df %>%  sf::st_as_sf(coords = c("lon", "lat"),  crs = 4326) %>%  
     sf::st_bbox() %>%  sf::st_as_sfc()  %>% sf::st_transform(outcrs)
   #st_crs(result) <- 4326
+  return(result)
+}
+
+
+#' @title osm.ClipSFnetwork_with_poly
+#' @description Clip sfnetwork by Polygon
+#' 
+#'
+#' @param innet sfnetwork to clip  
+#' @param inpol sf polygon to use for clipping
+#'
+#' @return An sfnetwork
+#'
+#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
+#' @export
+#' @keywords openstreetmap, bbox, network, polygon
+#' @family osm
+#' @importFrom dplyr %>%
+#' 
+#' @examples library(goal)
+#' library(sf)
+#' library(sfnetworks)
+#' library(tidygraph)
+#'  
+#' q=c(26.545029,39.088569,26.570177,39.116810)
+#' net2 = osm.getRoads(q, withBB=TRUE, outcrs=4326)
+#' poly = osm.bb_2_pol(q, outcrs =  4326)
+#' 
+#' net3 = osm.ClipSFnetwork_with_poly(net2, poly)
+#' 
+#' plot(net3,col="grey")
+#' plot(poly,add=T)
+osm.ClipSFnetwork_with_poly = function(innet, inpol){
+  result = innet %>% 
+    sfnetworks::activate("edges") %>% sf::st_intersection(inpol) %>%
+    sfnetworks::activate("nodes") %>% dplyr::filter(!tidygraph::node_is_isolated())
   return(result)
 }
