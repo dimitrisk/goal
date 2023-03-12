@@ -301,9 +301,9 @@ osm.getRoads = function(incoordinates= c(26.545029,39.088569,26.570177,39.116810
 #' poly = goal::osm.bb_2_pol(q, outcrs=2100) 
 #' 
 osm.bb_2_pol = function(inVec = c(26.545029,39.088569,26.570177,39.116810), outcrs=4326){
-  Poly_Coord_df = data.frame(lon = c(q[3],q[1]), lat =c(q[4],q[2]) )
+  Poly_Coord_df = data.frame(lon = c(inVec[3],inVec[1]), lat =c(inVec[4],inVec[2]) )
   #result <- Poly_Coord_df %>%  st_as_sf(coords = c("lon", "lat"),  crs = 4326) %>%  st_bbox() %>%  st_as_sfc() %>% st_transform(incrs)
-  result <- Poly_Coord_df %>%  sf::st_as_sf(coords = c("lon", "lat"),  crs = 4326) %>%  
+  result = Poly_Coord_df %>%  sf::st_as_sf(coords = c("lon", "lat"),  crs = 4326) %>%  
     sf::st_bbox() %>%  sf::st_as_sfc()  %>% sf::st_transform(outcrs)
   #st_crs(result) <- 4326
   return(result)
