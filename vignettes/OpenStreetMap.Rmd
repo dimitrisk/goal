@@ -148,7 +148,7 @@ library(simplevis)
 library(dplyr)
 library(palmerpenguins)
 library(stars)
-leaf_sf_col(amenities,  col_var = amenity)
+simplevis::leaf_sf_col(amenities,  col_var = amenity)
 ```
 
 

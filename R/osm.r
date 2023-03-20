@@ -69,14 +69,40 @@ osm.getPOI_usingbb = function(inbb=c(26.547303,39.101658,26.564641,39.113247) , 
 osm.combineAmenities = function(inam){
 
   #TODO: check if incoming is actually of type OSMresult dataset.
-  converted_pol = inam$osm_polygons %>% sf::st_centroid() %>% dplyr::select(osm_id, name, amenity)%>% 
-    sf::st_transform("+init=epsg:4326") %>% dplyr::mutate(geotype="frompolygon")
-  converted_points = inam$osm_points %>% dplyr::select(osm_id, name, amenity)%>% 
-    sf::st_transform("+init=epsg:4326")%>% dplyr::mutate(geotype="frompoint")
-  converted_multipol = inam$osm_multipolygons %>% dplyr::select(osm_id, name, amenity)%>% 
-    sf::st_transform("+init=epsg:4326")%>% dplyr::mutate(geotype="frommultipolygon")
   
-  ola = dplyr::bind_rows(converted_pol, converted_points, converted_multipol) %>% sf::st_sf() %>% sf::st_cast('POINT')
+  if(!is.null(inam$osm_polygons) ){
+    converted_pol = inam$osm_polygons %>% sf::st_centroid() %>% 
+      dplyr::select(osm_id, name, amenity) %>% sf::st_transform("+init=epsg:4326") %>% 
+      dplyr::mutate(geotype = "frompolygon")
+  }else{
+    converted_pol=NULL
+  }
+  
+  
+  if(!is.null(inam$osm_points) ){
+    converted_points = inam$osm_points %>% 
+      dplyr::select(osm_id, name, amenity) %>% 
+      sf::st_transform("+init=epsg:4326") %>% 
+      dplyr::mutate(geotype = "frompoint")
+  }else{
+    converted_points=NULL
+  }
+  
+  if(!is.null(inam$osm_multipolygons) ){
+    converted_multipol = inam$osm_multipolygons %>% 
+      dplyr::select(osm_id, name, amenity) %>% sf::st_transform("+init=epsg:4326") %>% 
+      dplyr::mutate(geotype = "frommultipolygon")
+  }else{
+    converted_multipol=NULL
+  }
+  
+  if(is.null( converted_pol) & is.null(converted_points) & is.null(converted_multipol)){
+    stop("These resulets are NULL. No Points & No polygons & no multipolygons")
+  }else{
+    ola = dplyr::bind_rows(converted_pol, converted_points, converted_multipol) %>% 
+      sf::st_sf() %>% sf::st_cast("POINT")
+  }
+  
   return(ola)
 }
 
