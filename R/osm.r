@@ -70,30 +70,40 @@ osm.combineAmenities = function(inam){
 
   if(!"osmdata" %in% class(inam)){    stop("This is not 'osmdata' object.")  }
   
-  # inam = am_chios
+  # 
+  
+  # inam = test
   if(!is.null(inam$osm_polygons) ){
-    converted_pol = inam$osm_polygons %>% sf::st_centroid() %>% 
-      dplyr::select(osm_id, name, amenity) %>% sf::st_transform("+init=epsg:4326") %>% 
-      dplyr::mutate(geotype = "frompolygon")
+    
+    converted_pol = inam$osm_polygons %>% sf::st_transform("+init=epsg:4326")%>% dplyr::mutate(geotype = "frompoint")
+    if("name" %in% names(converted_pol)){
+      converted_pol = converted_pol %>% dplyr::select(osm_id, name, amenity, geotype)
+    }else{
+      converted_pol = converted_pol %>% dplyr::select(osm_id,  amenity, geotype)
+    }
   }else{
     converted_pol=NULL
   }
   
   
   if(!is.null(inam$osm_points) ){
-    converted_points = inam$osm_points %>% 
-      dplyr::select(osm_id, name, amenity) %>% 
-      sf::st_transform("+init=epsg:4326") %>% 
-      dplyr::mutate(geotype = "frompoint")
+    converted_points = inam$osm_points %>% sf::st_transform("+init=epsg:4326")%>% dplyr::mutate(geotype = "frompoint")
+    if("name" %in% names(converted_points)){
+      converted_points = converted_points %>% dplyr::select(osm_id, name, amenity, geotype)
+    }else{
+      converted_points = converted_points %>% dplyr::select(osm_id,  amenity, geotype)
+    }
   }else{
     converted_points=NULL
   }
   
   if(!is.null(inam$osm_multipolygons) ){
-    converted_multipol = inam$osm_multipolygons %>% 
-      dplyr::select(osm_id, name, amenity) %>% 
-      sf::st_transform("+init=epsg:4326") %>% 
-      dplyr::mutate(geotype = "frommultipolygon")
+    converted_multipol = inam$osm_multipolygons %>% sf::st_transform("+init=epsg:4326")%>% dplyr::mutate(geotype = "frompoint")
+    if("name" %in% names(converted_multipol)){
+      converted_multipol = converted_multipol %>% dplyr::select(osm_id, name, amenity, geotype)
+    }else{
+      converted_multipol = converted_multipol %>% dplyr::select(osm_id,  amenity, geotype)
+    }
   }else{
     converted_multipol=NULL
   }
@@ -129,6 +139,8 @@ osm.combineAmenities = function(inam){
 #' shops
 osm.combineShops = function(inam){
 
+  #inam = this_shops
+  
   if(!"osmdata" %in% class(inam)){ stop("This is not 'osmdata' object.")  }
 
   
