@@ -136,3 +136,8 @@ net3 = osm.ClipSFnetwork_with_poly(net2, poly)
 plot(net3,col="grey", main="Clipped sfnetwork")
 plot(poly,add=T)
 
+## -----------------------------------------------------------------------------
+library(goal)
+mylength = osm.getLength_footway( place="Mytilene Municipal Unit" )
+mylength
+

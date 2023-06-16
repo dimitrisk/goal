@@ -246,10 +246,11 @@ plot(net3,col="grey", main="Clipped sfnetwork")
 plot(poly,add=T)
 ```
 
-# Walcability
+## Walkability
 
-A possible proxy way of measuring walcability in a city can be considered the total length of footways.
-The following function, calculates the total length of footways: 
+[Walkability](https://en.wikipedia.org/wiki/Walkability) is a measure of accessibility of amenities by foot.
+A possible proxy way of measuring walkability in a city can be considered the total length of footways of the city.
+The following function, calculates the total length (and some other statistics) of footways in a city: 
 ```{r}
 library(goal)
 mylength = osm.getLength_footway( place="Mytilene Municipal Unit" )
