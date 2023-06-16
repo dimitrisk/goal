@@ -24,9 +24,9 @@ Either by name of area (inPerioxi) or by bounding box (incoordinates).
 \examples{
 library(goal)
 library(sf)
- 
+
 q=c(26.545029,39.088569,26.570177,39.116810)
-poly = goal::osm.bb_2_pol(q, outcrs=4326) 
+poly = goal::osm.bb_2_pol(q, outcrs=4326)
 
 }
 \seealso{
@@ -36,6 +36,7 @@ Other osm:
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getLength_footway}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()},

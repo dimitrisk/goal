@@ -28,6 +28,7 @@ Other osm:
 \code{\link{osm.bb_2_pol}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getLength_footway}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()},

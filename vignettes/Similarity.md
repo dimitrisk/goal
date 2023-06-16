@@ -1,7 +1,7 @@
 ---
 title: "Similarity between vectors"
 author: "Dimitris Kavroudakis"
-date: "2022-12-13"
+date: "2023-06-16"
 output: 
   rmarkdown::html_vignette:
     toc: true
@@ -47,7 +47,7 @@ plot(final, initial, cex=weights*2, col="red",
 abline(0,1)
 ```
 
-![](/home/dimitrisk/working/code/REPOSITORY/goal/goal/vignettes/Similarity_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/Similarity_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 Calculate the weighted similarity
 

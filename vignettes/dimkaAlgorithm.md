@@ -1,7 +1,7 @@
 ---
 title: "Generating GCP targets for UAV flight missions"
 author: "Dimitris Kavroudakis"
-date: "2023-03-05"
+date: "2023-06-16"
 description: "Generating GCP targets for UAV flight missions"
 output: 
   rmarkdown::html_vignette:
@@ -66,6 +66,14 @@ one = uav.GenerateTargets(goaldata.data2)
 ## uav.GenerateTargets: reprojecting 'data2' to: '+init=epsg:2100'. I continue.
 ```
 
+```
+## Please note that 'maptools' will be retired during October 2023,
+## plan transition at your earliest convenience (see
+## https://r-spatial.org/r/2023/05/15/evolution4.html and earlier blogs
+## for guidance);some functionality will be moved to 'sp'.
+##  Checking rgeos availability: TRUE
+```
+
 ```r
 par(mar=c(0, 0, 0, 0))
 plot(one$Polygon)
@@ -75,7 +83,7 @@ plot(one$lines, add=T)
 text(one$simia , labels = one$simia$id, col="brown", pos=2)
 ```
 
-![Your figure caption.](dimkaAlgorithm_files/figure-html/unnamed-chunk-2-1.png)
+![Your figure caption.](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-2-1.png)
 
 ```r
 #library(rgdal)
@@ -96,7 +104,7 @@ par(mar=c(0, 0, 3, 0))
 five = uav.showFocal(insimia = one$simia, inpol=one$Polygon, toplot = T, size = 5) 
 ```
 
-![one](dimkaAlgorithm_files/figure-html/unnamed-chunk-3-1.png)
+![one](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-3-1.png)
 
 ```r
 kable(as.data.frame(five), col.names=c("Number of points","Frequency"))
@@ -120,7 +128,7 @@ kable(as.data.frame(five), col.names=c("Number of points","Frequency"))
 ten = uav.showFocal(insimia = one$simia, inpol=one$Polygon, toplot = T, size = 10)
 ```
 
-![two](dimkaAlgorithm_files/figure-html/unnamed-chunk-3-2.png)
+![two](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-3-2.png)
 
 ```r
 kable(as.data.frame(ten), col.names=c("Number of points","Frequency"))
@@ -140,7 +148,7 @@ kable(as.data.frame(ten), col.names=c("Number of points","Frequency"))
 fifteen = uav.showFocal(insimia = one$simia, inpol=one$Polygon, toplot = T, size = 15)
 ```
 
-![three](dimkaAlgorithm_files/figure-html/unnamed-chunk-3-3.png)
+![three](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-3-3.png)
 
 ```r
  kable(as.data.frame(fifteen), col.names=c("Number of points","Frequency"))
@@ -165,17 +173,17 @@ Now we will use focal size 10 and will reduce the target-points in the area. We 
 result = goal::uav.DoReduction(one, insize=10)
 ```
 
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-1.png)<!-- -->[1] "Removed point id:3"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-2.png)<!-- -->[1] "Removed point id:1"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-3.png)<!-- -->[1] "Removed point id:4"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-4.png)<!-- -->[1] "Removed point id:2"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-5.png)<!-- -->[1] "Removed point id:11"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-6.png)<!-- -->[1] "Removed point id:8"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-7.png)<!-- -->[1] "Removed point id:9"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-8.png)<!-- -->[1] "Removed point id:5"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-9.png)<!-- -->[1] "Removed point id:7"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-10.png)<!-- -->[1] "Removed point id:10"
-![](dimkaAlgorithm_files/figure-html/unnamed-chunk-4-11.png)<!-- -->
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-1.png)<!-- -->[1] "Removed point id:3"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-2.png)<!-- -->[1] "Removed point id:1"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-3.png)<!-- -->[1] "Removed point id:4"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-4.png)<!-- -->[1] "Removed point id:2"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-5.png)<!-- -->[1] "Removed point id:11"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-6.png)<!-- -->[1] "Removed point id:8"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-7.png)<!-- -->[1] "Removed point id:9"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-8.png)<!-- -->[1] "Removed point id:5"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-9.png)<!-- -->[1] "Removed point id:7"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-10.png)<!-- -->[1] "Removed point id:10"
+![](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-4-11.png)<!-- -->
 
 Now we get the results from each ste of reduction:
 
@@ -191,5 +199,5 @@ plot(result, col="blue", pch=20, add=TRUE)
 text(result, labels=result$id, pos=2, col="navyblue")
 ```
 
-![Results points](dimkaAlgorithm_files/figure-html/unnamed-chunk-5-1.png)
+![Results points](/home/dimitrisk/working/code/REPOSITORY/goal/Online/goal/vignettes/dimkaAlgorithm_files/figure-html/unnamed-chunk-5-1.png)
 

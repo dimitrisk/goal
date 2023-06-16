@@ -34,6 +34,7 @@ Other osm:
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getLength_footway}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()},
 \code{\link{osm.osmdata_result_2_bbox_pol}()}

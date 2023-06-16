@@ -32,16 +32,16 @@ library(goal)
 library(sf)
 library(sfnetworks)
 library(osmdata)
-mynetwork = osm.getRoads(incoordinates= c(26.545029,39.088569,26.570177,39.116810), 
+mynetwork = osm.getRoads(incoordinates= c(26.545029,39.088569,26.570177,39.116810),
   withBB=TRUE, outcrs=2100
 )
-mynetwork 
+mynetwork
 
-mynetwork2 = osm.getRoads(inPerioxi="Mytilene Municipal Unit", 
+mynetwork2 = osm.getRoads(inPerioxi="Mytilene Municipal Unit",
   withBB=FALSE, outcrs=2100
 )
-mynetwork2 
- 
+mynetwork2
+
 }
 \seealso{
 Other osm: 
@@ -51,6 +51,7 @@ Other osm:
 \code{\link{osm.combineAmenities}()},
 \code{\link{osm.combineShops}()},
 \code{\link{osm.getFrequency}()},
+\code{\link{osm.getLength_footway}()},
 \code{\link{osm.getPOI_usingbb}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.osmdata_result_2_bbox_pol}()}
