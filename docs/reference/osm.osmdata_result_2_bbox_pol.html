@@ -96,6 +96,7 @@
 <code><a href="osm.combineAmenities.html">osm.combineAmenities</a>()</code>,
 <code><a href="osm.combineShops.html">osm.combineShops</a>()</code>,
 <code><a href="osm.getFrequency.html">osm.getFrequency</a>()</code>,
+<code><a href="osm.getLength_footway.html">osm.getLength_footway</a>()</code>,
 <code><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a>()</code>,
 <code><a href="osm.getPOI.html">osm.getPOI</a>()</code>,
 <code><a href="osm.getRoads.html">osm.getRoads</a>()</code></p></div>
@@ -114,17 +115,15 @@
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">am</span> <span class="op">=</span> <span class="fu">goal</span><span class="fu">::</span><span class="fu"><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26.547303</span>,<span class="fl">39.101658</span>,<span class="fl">26.564641</span>,<span class="fl">39.113247</span><span class="op">)</span>, inkey <span class="op">=</span><span class="st">"amenity"</span> <span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Issuing query to Overpass API ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Announced endpoint: lambert.openstreetmap.de/</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Announced endpoint: gall.openstreetmap.de/</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Query complete!</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> converting OSM data to sf format</span>
 <span class="r-in"><span><span class="va">amenities</span> <span class="op">=</span> <span class="fu">goal</span><span class="fu">::</span><span class="fu"><a href="osm.combineAmenities.html">osm.combineAmenities</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_centroid assumes attributes are constant over geometries of x</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_centroid assumes attributes are constant over geometries</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_centroid assumes attributes are constant over geometries</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>point from first coordinate only</span>
 <span class="r-in"><span><span class="va">thepol</span> <span class="op">=</span> <span class="fu">goal</span><span class="fu">::</span><span class="fu">osm.osmdata_result_2_bbox_pol</span><span class="op">(</span><span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GDAL Error 1: PROJ: proj_as_wkt: DatumEnsemble can only be exported to WKT2:2019</span>
 <span class="r-in"><span></span></span>

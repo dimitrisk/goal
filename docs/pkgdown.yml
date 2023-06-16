@@ -1,9 +1,9 @@
-pandoc: 2.19.2
+pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   OpenStreetMap: OpenStreetMap.html
   Similarity: Similarity.html
   dimkaAlgorithm: dimkaAlgorithm.html
-last_built: 2023-03-12T09:05Z
+last_built: 2023-06-16T06:06Z
 

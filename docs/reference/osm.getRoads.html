@@ -115,6 +115,7 @@ Either by name of area (inPerioxi) or by bounding box (incoordinates).</p>
 <code><a href="osm.combineAmenities.html">osm.combineAmenities</a>()</code>,
 <code><a href="osm.combineShops.html">osm.combineShops</a>()</code>,
 <code><a href="osm.getFrequency.html">osm.getFrequency</a>()</code>,
+<code><a href="osm.getLength_footway.html">osm.getLength_footway</a>()</code>,
 <code><a href="osm.getPOI_usingbb.html">osm.getPOI_usingbb</a>()</code>,
 <code><a href="osm.getPOI.html">osm.getPOI</a>()</code>,
 <code><a href="osm.osmdata_result_2_bbox_pol.html">osm.osmdata_result_2_bbox_pol</a>()</code></p></div>
@@ -131,21 +132,21 @@ Either by name of area (inPerioxi) or by bounding box (incoordinates).</p>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://luukvdmeer.github.io/sfnetworks/" class="external-link">sfnetworks</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/osmdata/" class="external-link">osmdata</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright</span>
-<span class="r-in"><span><span class="va">mynetwork</span> <span class="op">=</span> <span class="fu">osm.getRoads</span><span class="op">(</span>incoordinates<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26.545029</span>,<span class="fl">39.088569</span>,<span class="fl">26.570177</span>,<span class="fl">39.116810</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span><span class="va">mynetwork</span> <span class="op">=</span> <span class="fu">osm.getRoads</span><span class="op">(</span>incoordinates<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">26.545029</span>,<span class="fl">39.088569</span>,<span class="fl">26.570177</span>,<span class="fl">39.116810</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  withBB<span class="op">=</span><span class="cn">TRUE</span>, outcrs<span class="op">=</span><span class="fl">2100</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Using bbox</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_crs&lt;- : replacing crs does not reproject data; use st_transform for that</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_crs&lt;- : replacing crs does not reproject data; use st_transform for that</span>
-<span class="r-in"><span><span class="va">mynetwork</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># A sfnetwork with</span> <span style="color: #555555;">1012</span> <span style="color: #555555;">nodes and</span> <span style="color: #555555;">744</span> <span style="color: #555555;">edges</span></span>
+<span class="r-in"><span><span class="va">mynetwork</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># A sfnetwork with</span> <span style="color: #555555;">1013</span> <span style="color: #555555;">nodes and</span> <span style="color: #555555;">746</span> <span style="color: #555555;">edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># CRS: </span> <span style="color: #555555;">EPSG:2100</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># An undirected multigraph with 285 components with spatially explicit edges</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># An undirected multigraph with 284 components with spatially explicit edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,012 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,013 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;POINT [m]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (720570.8 4331266)</span>
@@ -154,31 +155,31 @@ Either by name of area (inPerioxi) or by bounding box (incoordinates).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> (721287.5 4331404)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> (721245.2 4331235)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> (721069.4 4331400)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,006 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,007 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 744 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 746 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to osm_id   name           highway                           geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;LINESTRING [m]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1     2 39428970 Ζωοδόχου Πηγής primary (720570.8 4331266, 720530.6 43312…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3     4 40847716 8ης Νοεμβρίου  primary (721299.6 4331289, 721295.2 43313…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3     5 40847725 <span style="color: #BB0000;">NA</span>             primary (721245.2 4331235, 721248.1 43312…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 741 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 743 more rows</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">mynetwork2</span> <span class="op">=</span> <span class="fu">osm.getRoads</span><span class="op">(</span>inPerioxi<span class="op">=</span><span class="st">"Mytilene Municipal Unit"</span>, </span></span>
+<span class="r-in"><span><span class="va">mynetwork2</span> <span class="op">=</span> <span class="fu">osm.getRoads</span><span class="op">(</span>inPerioxi<span class="op">=</span><span class="st">"Mytilene Municipal Unit"</span>,</span></span>
 <span class="r-in"><span>  withBB<span class="op">=</span><span class="cn">FALSE</span>, outcrs<span class="op">=</span><span class="fl">2100</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Using name of area</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_crs&lt;- : replacing crs does not reproject data; use st_transform for that</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_crs&lt;- : replacing crs does not reproject data; use st_transform for that</span>
-<span class="r-in"><span><span class="va">mynetwork2</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># A sfnetwork with</span> <span style="color: #555555;">2519</span> <span style="color: #555555;">nodes and</span> <span style="color: #555555;">1784</span> <span style="color: #555555;">edges</span></span>
+<span class="r-in"><span><span class="va">mynetwork2</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># A sfnetwork with</span> <span style="color: #555555;">2532</span> <span style="color: #555555;">nodes and</span> <span style="color: #555555;">1795</span> <span style="color: #555555;">edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># CRS: </span> <span style="color: #555555;">EPSG:2100</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># An undirected multigraph with 772 components with spatially explicit edges</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># An undirected multigraph with 775 components with spatially explicit edges</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,519 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,532 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;POINT [m]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (720570.8 4331266)</span>
@@ -187,16 +188,16 @@ Either by name of area (inPerioxi) or by bounding box (incoordinates).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> (721287.5 4331404)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> (721245.2 4331235)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> (721069.4 4331400)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,513 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2,526 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">#</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,784 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,795 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    from    to osm_id   name           highway                           geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;LINESTRING [m]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1     2 39428970 Ζωοδόχου Πηγής primary (720570.8 4331266, 720530.6 43312…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     3     4 40847716 8ης Νοεμβρίου  primary (721299.6 4331289, 721295.2 43313…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3     5 40847725 <span style="color: #BB0000;">NA</span>             primary (721245.2 4331235, 721248.1 43312…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,781 more rows</span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,792 more rows</span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
