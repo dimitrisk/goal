@@ -455,6 +455,21 @@ osm.getLength_footway = function (place="Mytilene Municipal Unit") {
   footpaths <- osmdata::osmdata_sf(query) # Run the query
   footpaths_df <- footpaths$osm_lines # Get the footpaths (lines)
 
-  with_length <- footpaths_df %>% dplyr::mutate(length = sf::st_length(geometry)) # Calculate Length
-  return(sum(with_length$length))
+  with_length <- footpaths_df %>%
+    dplyr::mutate( length = sf::st_length(geometry)  ) # Calculate Length
+
+
+  return( list(
+    TotalLength=sum(with_length$length),
+    MeanLength=mean(with_length$length, na.rm=T),
+    MedianLength=median(with_length$length, na.rm=T),
+    SDLength=sd(with_length$length, na.rm=T),
+    VarianceLength=var(with_length$length, na.rm=T),
+    QuntilesLength=quantile(with_length$length, c(0,0.25,0.5,0.75,1))
+    )
+
+  )
 }
+
+#mylength = osm.getLength_footway( place="Mytilene Municipal Unit" )
+#mylength
