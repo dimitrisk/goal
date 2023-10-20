@@ -111,35 +111,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: usethis</span>
 <span class="r-in"><span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dimitrisk/goal"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading GitHub repo dimitrisk/goal@HEAD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for file ‘/tmp/RtmpM9cY3d/remotes5020315ffb76/dimitrisk-goal-40e132b/DESCRIPTION’ ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * preparing ‘goal’:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking DESCRIPTION meta-information ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for LF line-endings in source and make files and shell scripts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for empty or unneeded directories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * building ‘goal_1.0.tar.gz’</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing package into ‘/tmp/RtmpbJwbLb/temp_libpath5f1f168de67’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Failed to install 'goal' from GitHub:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   HTTP error 403.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   API rate limit exceeded for 195.251.137.108. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   Rate limit remaining: 0/60</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   Rate limit reset at: 2023-10-20 10:53:09 UTC</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   To increase your GitHub API rate limit</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   - Use `usethis::create_github_token()` to create a Personal Access Token.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   - Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dimitrisk.github.io/goal/" class="external-link">goal</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">=</span> <span class="fu">goal</span><span class="fu">::</span><span class="fu">osm.CreateEmptyRaster</span><span class="op">(</span>inPerioxi<span class="op">=</span><span class="st">"Mytilene Municipal Unit"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Please note that rgdal will be retired during October 2023,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> plan transition to sf/stars/terra functions using GDAL and PROJ</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> at your earliest convenience.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> See https://r-spatial.org/r/2023/05/15/evolution4.html and https://github.com/r-spatial/evolution</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> rgdal: version: 1.6-7, (SVN revision 1203)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Geospatial Data Abstraction Library extensions to R successfully loaded</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loaded GDAL runtime: GDAL 3.0.4, released 2020/01/28</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Path to GDAL shared files: /usr/share/gdal</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> GDAL binary built with GEOS: TRUE </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loaded PROJ runtime: Rel. 7.0.0, March 1st, 2020, [PJ_VERSION: 700]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Path to PROJ shared files: /home/dimitrisk/.local/share/proj:/usr/share/proj</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PROJ CDN enabled: FALSE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Linking to sp version:1.6-1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> To mute warnings of possible GDAL/OSR exportToProj4() degradation,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> use options("rgdal_show_exportToProj4_warnings"="none") before loading sp or rgdal.</span>
 <span class="r-in"><span><span class="va">result</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class      : RasterLayer </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dimensions : 180, 360, 64800  (nrow, ncol, ncell)</span>

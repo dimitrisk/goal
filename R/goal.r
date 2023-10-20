@@ -51,3 +51,6 @@ source("R/geometry.r")
 
 # ======   Similarity   =======
 source("R/stats.r")
+
+# ======   OSM   =======
+source("R/osm.r")
