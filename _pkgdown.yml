@@ -26,10 +26,6 @@ articles:
   navbar: ~
   contents:
   - Similarity
-- title: (uav) Dimka Algorithm
-  navbar: ~
-  contents:
-  - dimkaAlgorithm
 
 
 reference:
@@ -47,12 +43,6 @@ reference:
     desc: "Datasets in `goal` package."
     contents:
     - starts_with("goaldata")
-
-  - title: "Uav"
-    desc: "Methods for analysing data from Unmaned Aerial Vechicles (UAV) such as Drones."
-    contents:
-    - starts_with("uav")
-    - matches("dimkaAlgorithm")
 
   - title: "Visualization"
     desc: "Visualization methods."

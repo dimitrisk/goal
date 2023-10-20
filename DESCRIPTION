@@ -16,7 +16,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Imports: plotrix, rgeos, sp, osmdata, dplyr, sf, devtools,  stringr, sfnetworks, 
-  ggplot2, raster, methods, sqldf, grDevices , tidygraph
+  ggplot2, raster, methods, sqldf, grDevices , tidygraph, leaflet, simplevis, palmerpenguins, stars
 LazyData: true
 License: GPL-3
 RoxygenNote: 7.2.3

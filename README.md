@@ -3,27 +3,29 @@
 
 # goal
 
+This is an R library for the **analysis** of geographical data. It
+includes 6 groups of functions.
+
 - [Full documentation](https://dimitrisk.github.io/goal/index.html)
 
 ## Description
 
 <img src="man/figures/logo.png" align="right" />
 
-This is an R library for the **analysis** of geographical data. It
-includes 4 group of functions:
+The 5 groups of functions are the following:
 
-1)  functions for the analysis of networks (`net`).
+1)  (`net`) functions for the analysis of networks.
 
-2)  functions for spatial-geometry conversions (`geo`).
+2)  (`geo`) functions for spatial-geometry conversions.
 
-3)  functions for geographical visualization and interpretation of
-    statistics (`vis`).
+3)  (`vis`) functions for geographical visualization and interpretation
+    of statistics.
 
-4)  functions for analysis of UAV missions and flightpaths (`uav`).
+4)  (`uav`) functions for analysis of UAV missions and flightpaths.
 
-5)  functions for OpenStreetMap data analysis (`osm`).
+5)  (`osm`) functions for OpenStreetMap data analysis and downloading.
 
-6)  functions for Spatial Analysis (`spa`).
+6)  (`spa`) functions for Spatial Analysis
 
 ## Installation
 
@@ -42,14 +44,14 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(goal)
- 
+#> rgeos version: 0.6-3, (SVN revision 696)
+#>  GEOS runtime version: 3.8.0-CAPI-1.13.1 
+#>  Please note that rgeos will be retired during October 2023,
+#> plan transition to sf or terra functions using GEOS at your earliest convenience.
+#> See https://r-spatial.org/r/2023/05/15/evolution4.html for details.
+#>  Linking to sp version: 1.6-0 
+#>  Polygon checking: TRUE
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
 
 <!-- badges: start -->
 

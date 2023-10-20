@@ -244,7 +244,8 @@ osm.getFrequency = function(indf, inword="shop", removeNA=T){
 #' @importFrom dplyr %>%
 #' @importFrom devtools install_github
 #' @examples library(devtools)
-#' install_github("dimitrisk/goal")
+#' #install_github("dimitrisk/goal")
+#' library(raster)
 #' library(goal)
 #' result = goal::osm.CreateEmptyRaster(inPerioxi="Mytilene Municipal Unit")
 #' result
@@ -460,12 +461,12 @@ osm.getLength_footway = function (place="Mytilene Municipal Unit") {
 
 
   return( list(
-    TotalLength=sum(with_length$length),
-    MeanLength=mean(with_length$length, na.rm=T),
-    MedianLength=median(with_length$length, na.rm=T),
-    SDLength=sd(with_length$length, na.rm=T),
-    VarianceLength=var(with_length$length, na.rm=T),
-    QuntilesLength=quantile(with_length$length, c(0,0.25,0.5,0.75,1))
+    TotalLength= base::sum(with_length$length),
+    MeanLength=base::mean(with_length$length, na.rm=T),
+    MedianLength=stats::median(with_length$length, na.rm=T),
+    SDLength=stats::sd(with_length$length, na.rm=T),
+    VarianceLength=stats::var(with_length$length, na.rm=T),
+    QuntilesLength=stats::quantile(with_length$length, c(0,0.25,0.5,0.75,1))
     )
 
   )

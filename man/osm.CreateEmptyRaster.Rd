@@ -17,7 +17,8 @@ Create an empty raster for an area. It downloads the area from OSM services, and
 }
 \examples{
 library(devtools)
-install_github("dimitrisk/goal")
+#install_github("dimitrisk/goal")
+library(raster)
 library(goal)
 result = goal::osm.CreateEmptyRaster(inPerioxi="Mytilene Municipal Unit")
 result
