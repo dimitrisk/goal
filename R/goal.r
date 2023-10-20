@@ -46,7 +46,7 @@ source("R/geometry.r")
 
 # ========   UAV   ======
 #source("R/uav.r")
-source("R/uav.dimkaAlgorithm.r")
+#source("R/uav.dimkaAlgorithm.r")
 
 
 # ======   Similarity   =======
