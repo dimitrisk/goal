@@ -15,8 +15,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
-Imports: plotrix, rgdal, rgeos, sp, osmdata, dplyr, sf, devtools,  stringr, sfnetworks, 
-  ggplot2, raster, methods, plotKML, sqldf, grDevices , tidygraph
+Imports: plotrix, rgeos, sp, osmdata, dplyr, sf, devtools,  stringr, sfnetworks, 
+  ggplot2, raster, methods, sqldf, grDevices , tidygraph
 LazyData: true
 License: GPL-3
 RoxygenNote: 7.2.3
@@ -25,5 +25,5 @@ VignetteBuilder: knitr
 Depends: R(>= 3.5.0)
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
-URL: https://dimitrisk.github.io/goal/
-BugReports: https://dimitrisk.github.io/goal/issues
+URL: https://dimitrisk.github.io/goal/, https://github.com/dimitrisk/goal
+BugReports: https://github.com/dimitrisk/goal/issues
