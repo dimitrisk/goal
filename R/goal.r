@@ -20,13 +20,13 @@
 #' @keywords internal
 #' @docType package
 #' @title GeOgraphical Analysis Library
-NULL
+"_PACKAGE"
 
 # ========================   OSM   =================================
 #source("R/OSMDownload/osmDownload.r")
 
 # =======   Visualization   =======
-source("R/vis.r")
+#source("R/vis.r")
 
 # ============   Data   =====
 source("R/data.r")
@@ -42,15 +42,16 @@ source("R/data.r")
 
 
 # =======   Geometry   ======
-source("R/geometry.r")
+#source("R/geometry.r")
 
 # ========   UAV   ======
 #source("R/uav.r")
 #source("R/uav.dimkaAlgorithm.r")
 
+source("R/spatial.r")
 
 # ======   Similarity   =======
-source("R/stats.r")
+#source("R/stats.r")
 
 # ======   OSM   =======
 source("R/osm.r")

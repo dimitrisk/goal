@@ -37,6 +37,7 @@ Other osm:
 \code{\link{osm.getLength_footway}()},
 \code{\link{osm.getPOI}()},
 \code{\link{osm.getRoads}()},
+\code{\link{osm.myBB_2_pol}()},
 \code{\link{osm.osmdata_result_2_bbox_pol}()}
 }
 \author{

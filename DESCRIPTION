@@ -1,8 +1,8 @@
 Package: goal
 Type: Package
 Title: GeOgraphical Analysis Library
-Version: 1.0
-Date: 2023-03-02
+Version: 2.0
+Date: 2024-11-23
 Authors@R: person( given ="Dimitris", family ="Kavroudakis", email="dimitris123@gmail.com", role=c("aut","cre"), comment = c(ORCID = "0000-0001-5782-3049"))
 Maintainer: Dimitris Kavroudakis <dimitris123@gmail.com>
 Description: Library for the analysis of geographical data. Contains the following 5 groups of functions:   
@@ -14,12 +14,15 @@ Description: Library for the analysis of geographical data. Contains the followi
 Suggests: 
     knitr,
     rmarkdown,
+    leaflet,
+    simplevis,
+    tmaptools,
     testthat (>= 3.0.0)
-Imports: plotrix, rgeos, sp, osmdata, dplyr, sf, devtools,  stringr, sfnetworks, 
-  ggplot2, raster, methods, sqldf, grDevices , tidygraph, leaflet, simplevis, palmerpenguins, stars
+Imports:   sp, osmdata, dplyr, sf, devtools,  stringr, sfnetworks, 
+   raster,  tidygraph 
 LazyData: true
 License: GPL-3
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 VignetteBuilder: knitr
 Depends: R(>= 3.5.0)

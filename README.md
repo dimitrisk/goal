@@ -44,13 +44,6 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(goal)
-#> rgeos version: 0.6-3, (SVN revision 696)
-#>  GEOS runtime version: 3.8.0-CAPI-1.13.1 
-#>  Please note that rgeos will be retired during October 2023,
-#> plan transition to sf or terra functions using GEOS at your earliest convenience.
-#> See https://r-spatial.org/r/2023/05/15/evolution4.html for details.
-#>  Linking to sp version: 1.6-0 
-#>  Polygon checking: TRUE
 ```
 
 <!-- badges: start -->

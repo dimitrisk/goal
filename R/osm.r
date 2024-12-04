@@ -259,6 +259,44 @@ osm.CreateEmptyRaster = function(inPerioxi="Mytilene Municipal Unit"){
 }
 
 
+#' @title osm.myBB_2_pol
+#' @description Create a polygon from a BB object
+#'
+#' @param n the top north latitude
+#' @param s the bottom south latitude
+#' @param w the most western longitude
+#' @param e the most eastern longitude
+#' @param bbox either a bounding box
+#' @param proj4string either a projection
+#'
+#' @return An polygon
+#'
+#' @author Dimitris Kavroudakis \email{dimitris123@@gmail.com}
+#' @export
+#' @keywords openstreetmap
+#' @family osm
+#' @importFrom dplyr %>%
+#' @importFrom devtools install_github
+#' @examples library(devtools)
+#' #install_github("dimitrisk/goal")
+#' library(raster)
+#' library(goal)
+#' bb = c(38.1 , 26.5 , 39.05 , 27.7)
+#' result = goal::osm.myBB_2_pol(n =bb[3], s =bb[1], w =bb[4], e =bb[2])
+#' result
+osm.myBB_2_pol = function (n, s, w, e, bbox = NA, proj4string = sp::CRS("+init=epsg:4326")){
+  if (all(!is.na(bbox), is.matrix(bbox), dim(bbox) == c(2,2))) {
+    n <- bbox[2, 2]
+    s <- bbox[2, 1]
+    w <- bbox[1, 1]
+    e <- bbox[1, 2]
+  }
+  box1 <- matrix(c(w, s, w, n, e, n, e, s, w, s), ncol = 2, byrow = TRUE)
+  box1 <- sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(box1)), ID = 1)), proj4string = proj4string)
+  return(box1)
+}
+
+
 #' @title osm.osmdata_result_2_bbox_pol
 #' @description Get the bbox of a result, as an SF polygon.
 #'
@@ -288,7 +326,10 @@ osm.osmdata_result_2_bbox_pol = function(osmdata_result){
   if(!nrow(osmdata_result$osm_points)>0){stop("The 'osmdata_result' used in 'osm.osmdata_result_2_bbox_pol', do not contain any points. I need the points in order to copy their CRS.")}
 
   bb = osmdata_result$bbox %>% stringr::str_split(",") %>% dplyr::nth(1) %>% as.vector() %>% as.numeric()
-  pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2]) %>% sf::st_as_sf() %>% sf::st_transform(sf::st_crs(osmdata_result$osm_points))
+  #pol = rgeos::bbox2SP(n =bb[3], s =bb[1], w =bb[4], e =bb[2]) %>% sf::st_as_sf() %>% sf::st_transform(sf::st_crs(osmdata_result$osm_points))
+  pol = goal::osm.myBB_2_pol(n =bb[3], s =bb[1], w =bb[4], e =bb[2]) %>% sf::st_as_sf() %>% sf::st_transform(sf::st_crs(osmdata_result$osm_points))
+  #pol = bb %>% tmaptools::bb_poly() %>% sf::st_set_crs(sf::st_crs(osmdata_result$osm_points))  #%>% sf::st_transform(sf::st_crs(osmdata_result$osm_points))
+
   return(pol)
 }
 
@@ -457,7 +498,7 @@ osm.getLength_footway = function (place="Mytilene Municipal Unit") {
   footpaths_df <- footpaths$osm_lines # Get the footpaths (lines)
 
   with_length <- footpaths_df %>%
-    dplyr::mutate( length = sf::st_length(geometry)  ) # Calculate Length
+    dplyr::mutate( length = sf::st_length(footpaths_df$geometry)  ) # Calculate Length
 
 
   return( list(

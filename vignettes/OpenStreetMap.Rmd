@@ -42,32 +42,37 @@ library(devtools)
 library(goal)
 #library(osmdata)
 library(raster)
+library(sf)
+library(tmaptools)
+library(leaflet)
+library(dplyr)
+library(simplevis)
 ```
 
 ### Amenities
 
 Download all amenities in this municipality (Points or Polygons or Multipolygons)
 ```{r}
-am = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
+am = goal::osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "amenity")
 am
 ```
 
 Alternatively, we can use a bounding box of an area instead of the name of a municipality.
 ```{r}
-myt = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
+myt = goal::osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" )
 myt
 ```
 
 After downloading the POIs (`am`), we merge all POIs together (Points, Polygons, Multipolygons), 
 and convert them all to points.
 ```{r}
-amenities = osm.combineAmenities(am)
+amenities = goal::osm.combineAmenities(am)
 amenities
 ```
 
 Frequency table of amenities types in this municipality
 ```{r}
-freq1 = osm.getFrequency(amenities, inword = "amenity", removeNA = F)
+freq1 = goal::osm.getFrequency(amenities, inword = "amenity", removeNA = F)
 freq1
 ```
 
@@ -79,17 +84,17 @@ freq1
 
 Get all shops in this municipality (Points, Polygons, Multipolygons)
 ```{r}
-sh = osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
+sh = goal::osm.getPOI(inPerioxi = "Mytilene Municipal Unit", inkey = "shop")
 sh
 
 #' Merge all shops (Points, Polygons, Multipolygons), and convert them to points.
-shops = osm.combineShops(sh)
+shops = goal::osm.combineShops(sh)
 shops
 ```
 
 Frequency table of shop types in this municipality
 ```{r}
-freq2 = osm.getFrequency(shops, inword = "shop", removeNA = F)
+freq2 = goal::osm.getFrequency(shops, inword = "shop", removeNA = F)
 freq2
 ```
 
@@ -98,10 +103,11 @@ freq2
  
 Create empty raster of this area and get the polygon of this area.
 ```{r}
-r = osm.CreateEmptyRaster(inPerioxi = "Mytilene Municipal Unit")
+r = goal::osm.CreateEmptyRaster(inPerioxi = "Mytilene Municipal Unit")
 
 #' Get polygon of the area
-mypol = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
+#mypol = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
+mypol = osmdata::getbb("Mytilene Municipal Unit") %>% bb_poly() %>% sf::st_set_crs(st_crs(shops))  
 ```
 
 Sum of shops per cell
@@ -140,15 +146,15 @@ plot(mypol, add=T)
 
 ```{r message=F, warn=F}
 #' web map1
-library(leaflet)
-leaflet(amenities) %>% addTiles() %>%  leaflet::addMarkers(popup = ~as.character(amenity), label = ~as.character(amenity))
+
+leaflet(amenities) %>% addTiles() %>%  addMarkers(popup = ~as.character(amenity), label = ~as.character(amenity))
 
 #' web map2
-library(simplevis)
-library(dplyr)
-library(palmerpenguins)
-library(stars)
-simplevis::leaf_sf_col(amenities,  col_var = amenity)
+#library(simplevis)
+
+#library(palmerpenguins)
+#library(stars)
+leaf_sf_col(amenities,  col_var = amenity)
 ```
 
 
@@ -156,20 +162,21 @@ simplevis::leaf_sf_col(amenities,  col_var = amenity)
 
 We now use a custom bounding box and then download data only for this area.
 ```{r}
-am = osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" ) # Download
-mypol_bb = osm.osmdata_result_2_bbox_pol(am) # get polygon of this bounding box.
-amenities = osm.combineAmenities(am) # combine all amenities into points.
+am = goal::osm.getPOI_usingbb( c(26.547303,39.101658,26.564641,39.113247), inkey ="amenity" ) # Download amenities in this area
+mypol_bb = goal::osm.osmdata_result_2_bbox_pol(am) %>% st_set_crs(st_crs(shops))  # get polygon of this bounding box.
+amenities = goal::osm.combineAmenities(am) # combine all amenities into points.
 ```
 
 Now get the general polygon of this municipality (coastline)
 ```{r}
-mypol2 = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
+#mypol2 = osmdata::getbb("Mytilene Municipal Unit", format_out = "sf_polygon")$multipolygon
+mypol2 = osmdata::getbb("Mytilene Municipal Unit")  %>% bb_poly() %>% sf::st_set_crs(st_crs(shops))  
 ```
 
 
 ```{r}
 q=c(26.545029,39.088569,26.570177,39.116810)
-poly = goal::osm.bb_2_pol(inVec=q, outcrs=2100) 
+poly = goal::osm.bb_2_pol(inVec=q, outcrs=2100)  # outcrs=4326)
 #plot(poly)
 ```
 
@@ -192,7 +199,7 @@ We need to calculate the intersection between municipality polygon (coastline) a
 custom square bounding box we have defined.
 
 ```{r}
-clip1 = sf::st_intersection(mypol_bb,mypol2)
+clip1 = sf::st_intersection( mypol_bb, mypol2 )
 ```
 
 show the area
@@ -212,7 +219,7 @@ Calculate the density of amenities (points) in this clipped area:
 density1 = raster::rasterize(amenities, r, field=1, fun=sum) # sum
 plot(density1)
 plot(clip1, add=T)
-plot(as_Spatial(amenities), add=T, cex=0.5)
+plot(sf::as_Spatial(amenities), add=T, cex=0.5)
 ```
 
 
@@ -220,7 +227,7 @@ plot(as_Spatial(amenities), add=T, cex=0.5)
 
 Get all roads of this municipality by using just the municipality name:
 ```{r}
-myr1 = osm.getRoads(inPerioxi = "Mytilene Municipal Unit", 
+myr1 = goal::osm.getRoads(inPerioxi = "Mytilene Municipal Unit", 
                     withBB=FALSE, outcrs = 2100)
 myr1
 plot(myr1, col="blue", main="sfnetworks Roads (by municipality name)")
@@ -228,7 +235,7 @@ plot(myr1, col="blue", main="sfnetworks Roads (by municipality name)")
 
 Get all roads of this area by using a bounding box:
 ```{r}
-myr2 = osm.getRoads(incoordinates = c(26.545029,39.088569,26.570177,39.116810), 
+myr2 = goal::osm.getRoads(incoordinates = c(26.545029,39.088569,26.570177,39.116810), 
                     withBB=TRUE, outcrs = 2100 )
 myr2
 plot(myr2, col="grey", main="sfnetworks Roads (by bbox)")
@@ -237,10 +244,10 @@ plot(myr2, col="grey", main="sfnetworks Roads (by bbox)")
 example
 ```{r}
 q=c(26.545029,39.088569,26.570177,39.116810)
-net2 = osm.getRoads(q, withBB=TRUE, outcrs=4326)
-poly = osm.bb_2_pol(q, outcrs =  4326)
+net2 = goal::osm.getRoads(q, withBB=TRUE, outcrs=4326)
+poly = goal::osm.bb_2_pol(q, outcrs =  4326)
  
-net3 = osm.ClipSFnetwork_with_poly(net2, poly)
+net3 = goal::osm.ClipSFnetwork_with_poly(net2, poly)
 
 plot(net3,col="grey", main="Clipped sfnetwork")
 plot(poly,add=T)
@@ -253,6 +260,6 @@ A possible proxy way of measuring walkability in a city can be considered the to
 The following function, calculates the total length (and some other statistics) of footways in a city: 
 ```{r}
 library(goal)
-mylength = osm.getLength_footway( place="Mytilene Municipal Unit" )
+mylength = goal::osm.getLength_footway( place="Mytilene Municipal Unit" )
 mylength
 ```
